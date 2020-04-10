@@ -1,1 +1,1 @@
-# ConditionalAccess
+# Conditional Access as Code
