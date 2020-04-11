@@ -3,10 +3,11 @@ $Policies = Get-GraphConditionalAccessPolicy -accessToken $accessToken -All $tru
 $SelectedPolicies = $Policies.value | Out-GridView -PassThru
 foreach($Item in $SelectedPolicies){
     Remove-GraphConditionalAccessPolicy -accessToken $accessToken -Id $Item.id
+    Start-Sleep -Seconds 1
 }
 
 #Group cleanup
-$Groups = Get-AzureADGroup -Filter "startswith(DisplayName,'Conditional_Access')"
+$Groups = Get-AzureADGroup -Filter "startswith(DisplayName,'CA')"
 $SelectedGroups = $Groups | Out-GridView -PassThru
 foreach($Item in $SelectedGroups){
     Remove-AzureADGroup -ObjectId $Item.ObjectId
