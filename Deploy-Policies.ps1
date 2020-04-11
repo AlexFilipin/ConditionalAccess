@@ -323,14 +323,3 @@ foreach($Policy in $Policies){
     $Counter ++
 }
 #endregion
-
-#region post tasks
-    #Fill exlusion groups SynchronizationServiceAccountsGroup and EmergencyAccessAccountsGroup
-    #Create your trusted locations
-    #Enable app enforced restrictions in EXO and SPO
-    #Create app protection policy
-    #Create access reviews    
-    #Enable combined registration preview
-    #Choose MFA registration story 1 Identity Protection MFA registration policy 2 AAD SSPR registration policy 3 Proactive enduser communication 4 Short term MFA enforcement without exceptions
-    #Monitor exclusion groups
-#endregion
