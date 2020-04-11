@@ -25,6 +25,8 @@ Policy sets are based on the policies in the repository and form complete policy
 ## Automation solution
 A script based automation solution to deploy and update policy sets in environments.
 
+**Together, these three components enable an extremely fast deployment of conditional access concepts and their long-term maintenance, e.g. in the form of source control.**
+
 # Get started with the [Quick-start wiki](https://github.com/AlexFilipin/ConditionalAccess/wiki#quick-start)
 
 Although I work for Microsoft, this is not an official recommendation, I exclude any liability and warranty. This is only a personal recommendation which has to be implemented with the utmost care and testing.
