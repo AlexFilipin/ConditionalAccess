@@ -24,3 +24,5 @@ Policy sets are based on the policies in the repository and form complete policy
 
 ## Automation solution
 A script based automation solution to deploy and update policy sets in environments.
+
+# Get started with the [Quick-start wiki](https://github.com/AlexFilipin/ConditionalAccess/wiki#quick-start)
