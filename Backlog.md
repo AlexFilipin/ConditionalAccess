@@ -10,3 +10,13 @@
 * Should we add automation for enabling the combined MFA registration?
 * Should we add automation to add group memebers to the exclusion group?
 * Should we add automation for adding applications to policy in a targeted architecture?
+
+New polcies for the policy repository
+* VM Sign-In in in WHfB cert trust org (Issue anyways)
+* Compliance - Terms of Use
+* Attack surface reduction - Unapproved apps: Block access
+* Attack surface reduction - Unapproved apps: Block access For guests
+* Attack surface reduction - All apps: Block access When connecting from an unapproved country
+* Attack surface reduction - Azure management: Block access For non-admins
+* Application protection, MCAS advanced control
+* Application protection, MCAS block download control
