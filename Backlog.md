@@ -9,3 +9,4 @@
 * Should we add automation for app protection policy creation?
 * Should we add automation for enabling the combined MFA registration?
 * Should we add automation to add group memebers to the exclusion group?
+* Should we add automation for adding applications to policy in a targeted architecture?
