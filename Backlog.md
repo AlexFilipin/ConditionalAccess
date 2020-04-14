@@ -1,5 +1,5 @@
 * Wiki documentation
-* Switch from emergency access account and AADC service account exclusion groups to one exclusion and one exemptions group: Exemptions (in addition to exclusions), are cloud based groups, that typically are empty, but if a user is added to this group they are temporary exempted from the CA policy. So exemptions are temporary in nature as opposed to exclusions which are more static for service account scenarios.
+* Switch to one exclusion and one exemptions group: Exemptions (in addition to exclusions), are cloud based groups, that typically are empty, but if a user is added to this group they are temporary exempted from the CA policy. So exemptions are temporary in nature as opposed to exclusions which are more static for service account scenarios.
 * Multiple authentication options
 * Add a ring based deployment model
 * Add creation of access reviews for exemption and exclusion groups
