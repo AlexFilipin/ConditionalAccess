@@ -11,7 +11,7 @@
 * Should we add automation to add group memebers to the exclusion group?
 * Should we add automation for adding applications to policy in a targeted architecture? Add apps based on group membership, app in group
 
-New polcies for the policy repository
+Possible new polcies for the policy repository
 * VM Sign-In in in WHfB cert trust org (Issue anyways)
 * Compliance - Terms of Use
 * Attack surface reduction - Unapproved apps: Block access
