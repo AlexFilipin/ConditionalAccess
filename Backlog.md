@@ -1,5 +1,5 @@
 * Wiki documentation
-* Switch from emergency access account and AADC service account exclusion groups to one exclusion and one exemptions group: Exemptions (in addition to exclusions), are cloud based groups, that typically are empty, but if a user is added to this group they are temporary exempted from the CA policy. So exemptions are temporary in nature as opposed to exclusions which are more static for service account scenarios.
+* Switch to one exclusion and one exemptions group: Exemptions (in addition to exclusions), are cloud based groups, that typically are empty, but if a user is added to this group they are temporary exempted from the CA policy. So exemptions are temporary in nature as opposed to exclusions which are more static for service account scenarios.
 * Multiple authentication options
 * Add a ring based deployment model
 * Add creation of access reviews for exemption and exclusion groups
@@ -10,8 +10,9 @@
 * Should we add automation for enabling the combined MFA registration?
 * Should we add automation to add group memebers to the exclusion group?
 * Should we add automation for adding applications to policy in a targeted architecture? Add apps based on group membership, app in group
+* Should we add automation to enable modern auth / add as post task for old tenants? https://docs.microsoft.com/en-us/microsoft-365/admin/security-and-compliance/set-up-multi-factor-authentication?view=o365-worldwide#enable-modern-authentication-for-your-organization
 
-New polcies for the policy repository
+Possible new polcies for the policy repository
 * VM Sign-In in in WHfB cert trust org (Issue anyways)
 * Compliance - Terms of Use
 * Attack surface reduction - Unapproved apps: Block access
