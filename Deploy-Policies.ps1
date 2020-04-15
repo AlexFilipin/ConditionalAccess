@@ -138,7 +138,7 @@ function Remove-GraphConditionalAccessPolicy{
         [Parameter(Mandatory = $true)]
         $accessToken 
     )
-    $conditionalAccessURI = "https://graph.microsoft.com/beta/conditionalAccess/policies/{$Id}"
+    $conditionalAccessURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies/{$Id}"
     $conditionalAccessPolicyResponse = Invoke-RestMethod -Method Delete -Uri $conditionalAccessURI -Headers @{"Authorization"="Bearer $accessToken"}
     $conditionalAccessPolicyResponse     
 }
