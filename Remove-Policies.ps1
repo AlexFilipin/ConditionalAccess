@@ -8,6 +8,7 @@ foreach($Item in $SelectedPolicies){
 
 #Group cleanup
 $Groups = Get-AzureADGroup -Filter "startswith(DisplayName,'CA')"
+$Groups = Get-AzureADGroup -All $true
 $SelectedGroups = $Groups | Out-GridView -PassThru
 foreach($Item in $SelectedGroups){
     Remove-AzureADGroup -ObjectId $Item.ObjectId

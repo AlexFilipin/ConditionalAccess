@@ -1,0 +1,54 @@
+{
+    "displayName": "505 - <RING> - Data protection - O365: Use app enforced restrictions When using a browser on untrusted devices",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "grantControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "browser"
+        ],
+        "platforms": null,
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "Office365"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        },
+        "devices": {
+            "includeDeviceStates": [
+                "All"
+            ],
+            "excludeDeviceStates": [
+                "Compliant",
+                "DomainJoined"
+            ]
+        }
+    },
+    "sessionControls": {
+        "cloudAppSecurity": null,
+        "signInFrequency": null,
+        "persistentBrowser": null,
+        "applicationEnforcedRestrictions": {
+            "isEnabled": true
+        }
+    }
+}
