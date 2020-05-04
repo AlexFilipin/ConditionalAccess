@@ -1,0 +1,44 @@
+{
+    "displayName": "535 - <RING> - Data protection - Level 3 data: MCAS custom policy",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "grantControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [],
+        "platforms": null,
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [],
+            "excludeApplications": [],
+            "includeUserActions": [
+                "urn:microsoft:req3"
+            ]
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "sessionControls": {
+        "applicationEnforcedRestrictions": null,
+        "signInFrequency": null,
+        "persistentBrowser": null,
+        "cloudAppSecurity": {
+            "cloudAppSecurityType": "mcasConfigured",
+            "isEnabled": true
+        }
+    }
+}

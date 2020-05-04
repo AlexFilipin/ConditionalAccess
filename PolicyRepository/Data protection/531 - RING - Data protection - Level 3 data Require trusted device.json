@@ -1,0 +1,44 @@
+{
+    "displayName": "531 - <RING> - Data protection - Level 3 data: Require trusted device",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [],
+        "platforms": null,
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [],
+            "excludeApplications": [],
+            "includeUserActions": [
+                "urn:microsoft:req3"
+            ]
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "compliantDevice",
+            "domainJoinedDevice"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}
