@@ -115,11 +115,11 @@ Param(
 <#
 $DebugMode = $True
 $Prefix = "CA"
-$Ring = "PILOT"
-$RingTargeted = $True
+$Ring = "TEST"
+$RingTargeted = $False
 $ClientId = "a4a0356b-69a5-4b85-9545-f64459010333"
 $TenantName = "filipinlabs.onmicrosoft.com"
-$PoliciesFolder = "C:\AF\Repos\Policies"
+$PoliciesFolder = "C:\Users\filip\Downloads\tmp"
 #>
 #endregion
 
@@ -369,10 +369,10 @@ foreach($Policy in $Policies){
     $requestBody = $Policy | ConvertTo-Json -Depth 3
 
     if($Policy.id){
-        Write-Host "Template includes policy id - trying to update existing policy" -ForegroundColor Green  
+        Write-Host "Template includes policy id - trying to update existing policy" $Policy.id -ForegroundColor Green  
         $Result = Get-GraphConditionalAccessPolicy -Id $Policy.id -accessToken $accessToken -ErrorAction SilentlyContinue
         if($Result){
-            Write-Host "Updating existing policy" -ForegroundColor Yellow 
+            Write-Host "Updating existing policy" $Policy.id -ForegroundColor Yellow 
             Set-GraphConditionalAccessPolicy -requestBody $requestBody -accessToken $accessToken -Id $Policy.id
         }else{
             Write-Host "No existing policy found - abort cannot update" -ForegroundColor Red
