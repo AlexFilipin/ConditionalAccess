@@ -371,6 +371,7 @@ foreach($Policy in $Policies){
     if($Policy.id){
         Write-Host "Template includes policy id - trying to update existing policy" $Policy.id -ForegroundColor Green  
         $Result = Get-GraphConditionalAccessPolicy -Id $Policy.id -accessToken $accessToken -ErrorAction SilentlyContinue
+        Start-Sleep -Seconds 3
         if($Result){
             Write-Host "Updating existing policy" $Policy.id -ForegroundColor Yellow 
             Set-GraphConditionalAccessPolicy -requestBody $requestBody -accessToken $accessToken -Id $Policy.id
@@ -382,6 +383,6 @@ foreach($Policy in $Policies){
         New-GraphConditionalAccessPolicy -requestBody $requestBody -accessToken $accessToken        
     }
 
-    Start-Sleep -Seconds 2
+    Start-Sleep -Seconds 3
 }
 #endregion
