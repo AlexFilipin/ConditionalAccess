@@ -1,5 +1,5 @@
 {
-    "displayName": "106 - <RING> - Admin protection - Azure management: Require trusted location",
+    "displayName": "104 - <RING> - Admin protection - Priveleged systems: Require MFA",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -8,6 +8,7 @@
         "signInRiskLevels": [],
         "clientAppTypes": [],
         "platforms": null,
+        "locations": null,
         "deviceStates": null,
         "applications": {
             "includeApplications": [
@@ -29,20 +30,12 @@
             ],
             "includeRoles": [],
             "excludeRoles": []
-        },
-        "locations": {
-            "includeLocations": [
-                "All"
-            ],
-            "excludeLocations": [
-                "AllTrusted"
-            ]
         }
     },
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "mfa"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

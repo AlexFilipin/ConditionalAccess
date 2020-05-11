@@ -1,23 +1,18 @@
 {
-    "displayName": "107 - <RING> - Admin protection - Azure management: Block access For internal users When any risk is detected",
+    "displayName": "600 - <RING> - Compliance - Specific apps: Block access",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "signInRiskLevels": [
-            "high",
-            "medium",
-            "low"
-        ],
+        "signInRiskLevels": [],
         "clientAppTypes": [],
         "platforms": null,
         "locations": null,
         "deviceStates": null,
+        "devices": null,
         "applications": {
-            "includeApplications": [
-                "797f4846-ba00-4fd7-ba43-dac1f8f63013"
-            ],
+            "includeApplications": [],
             "excludeApplications": [],
             "includeUserActions": []
         },
@@ -25,15 +20,9 @@
             "includeUsers": [
                 "All"
             ],
-            "excludeUsers": [
-                "GuestsOrExternalUsers"
-            ],
+            "excludeUsers": [],
             "includeGroups": [],
-            "excludeGroups": [
-                "<ExclusionTempGroup>",
-                "<ExclusionPermGroup>",
-                "<EmergencyAccessAccountsGroup>"
-            ],
+            "excludeGroups": [],
             "includeRoles": [],
             "excludeRoles": []
         }
