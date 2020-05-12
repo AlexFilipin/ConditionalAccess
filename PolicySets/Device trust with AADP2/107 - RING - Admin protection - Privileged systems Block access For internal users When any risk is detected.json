@@ -1,11 +1,15 @@
 {
-    "displayName": "104 - <RING> - Admin protection - Priveleged systems: Require MFA",
+    "displayName": "107 - <RING> - Admin protection - Privileged systems: Block access For internal users When any risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "signInRiskLevels": [],
+        "signInRiskLevels": [
+            "high",
+            "medium",
+            "low"
+        ],
         "clientAppTypes": [],
         "platforms": null,
         "locations": null,
@@ -21,7 +25,9 @@
             "includeUsers": [
                 "All"
             ],
-            "excludeUsers": [],
+            "excludeUsers": [
+                "GuestsOrExternalUsers"
+            ],
             "includeGroups": [],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
@@ -35,7 +41,7 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "mfa"
+            "block"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

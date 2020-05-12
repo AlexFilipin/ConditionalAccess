@@ -1,5 +1,5 @@
 {
-    "displayName": "104 - <RING> - Admin protection - Priveleged systems: Require MFA",
+    "displayName": "105 - <RING> - Admin protection - Privileged systems: Require trusted device",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -35,7 +35,8 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "mfa"
+            "compliantDevice",
+            "domainJoinedDevice"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []
