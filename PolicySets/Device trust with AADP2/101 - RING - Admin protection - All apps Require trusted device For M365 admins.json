@@ -20,7 +20,9 @@
         "users": {
             "includeUsers": [],
             "excludeUsers": [],
-            "includeGroups": [],
+            "includeGroups": [
+                "<AdministratorGroup>"
+            ],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",

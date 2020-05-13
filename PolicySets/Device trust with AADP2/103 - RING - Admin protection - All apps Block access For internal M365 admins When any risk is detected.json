@@ -26,7 +26,9 @@
             "excludeUsers": [
                 "GuestsOrExternalUsers"
             ],
-            "includeGroups": [],
+            "includeGroups": [
+                "<AdministratorGroup>"
+            ],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",

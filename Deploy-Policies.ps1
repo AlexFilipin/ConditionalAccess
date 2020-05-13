@@ -60,11 +60,16 @@
     If no value is provided: $Prefix + "_Exclusion_EmergencyAccessAccounts", e.g. CA_Exclusion_EmergencyAccessAccounts
     If a group with that name already exists, it will be used
 
+.PARAMETER AdministratorGroup
+    Name of the group for administrative accounts that should be targeted in the M365 admin protection 
+    If no value is provided: $Prefix + "_Administrator", e.g. CA_Administrator
+    If a group with that name already exists, it will be used
+
 .NOTES
-    Version:        1.1
+    Version:        1.2
     Author:         Alexander Filipin
     Creation date:  2020-04-09
-    Last modified:  2020-04-28
+    Last modified:  2020-05-13
 
     Many thanks to the two Microsoft MVPs whose publications served as a basis for this script:
         Jan Vidar Elven's work https://github.com/JanVidarElven/MicrosoftGraph-ConditionalAccess
@@ -109,6 +114,9 @@ Param(
     ,
     [Parameter(Mandatory=$False)]
     [System.String]$EmergencyAccessAccountsGroup
+    ,
+    [Parameter(Mandatory=$False)]
+    [System.String]$AdministratorGroup
 )
 
 #region development
@@ -130,6 +138,7 @@ if(-not $SynchronizationServiceAccountsGroup){$SynchronizationServiceAccountsGro
 if(-not $EmergencyAccessAccountsGroup){$EmergencyAccessAccountsGroup = $Prefix + "_Exclusion_EmergencyAccessAccounts"}
 if(-not $RingTargeted){$RingTargeted = $False}
 if(-not $RingGroup){$RingGroup = $Prefix + "_" + $Ring}
+if(-not $AdministratorGroup){$AdministratorGroup = $Prefix + "_Administrator"}
 #endregion
 
 #region functions
@@ -257,6 +266,9 @@ $ObjectID_SynchronizationServiceAccounts = New-AFAzureADGroup -Name $Synchroniza
 Write-Host "Creating or receiving group:" $EmergencyAccessAccountsGroup -ForegroundColor Green
 $ObjectID_EmergencyAccessAccounts = New-AFAzureADGroup -Name $EmergencyAccessAccountsGroup
 
+Write-Host "Creating or receiving group:" $AdministratorGroup -ForegroundColor Green
+$ObjectID_AdministratorGroup = New-AFAzureADGroup -Name $AdministratorGroup
+
 if($RingTargeted){
     Write-Host "Creating or receiving group:" $RingGroup -ForegroundColor Green
     $ObjectID_RingGroup = New-AFAzureADGroup -Name $RingGroup
@@ -332,6 +344,12 @@ foreach($Policy in $Policies){
         if($includeGroups.Contains("<AADP2Group>")){
             $includeGroups.Add($ObjectID_AADP2)
             $includeGroups.Remove("<AADP2Group>")
+        }
+
+        #Replace AdministratorGroup
+        if($includeGroups.Contains("<AdministratorGroup>")){
+            $includeGroups.Add($ObjectID_AdministratorGroup)
+            $includeGroups.Remove("<AdministratorGroup>")
         }
 
         $Policy.conditions.users.includeGroups = $includeGroups
