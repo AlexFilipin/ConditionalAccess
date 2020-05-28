@@ -4,15 +4,15 @@
 
 .DESCRIPTION
     Connects to Microsoft Graph via device code flow
-    Connects to Azure AD via AzureAD module, normal user login - requires AzureADPreview module to create dynamic groups: Tested with version 2.0.2.89
-
+    Connects to Azure AD via AzureAD module, normal user login
     Creates AAD group for AADC synchronization service accounts
     Creates AAD group for AAD emergency access accounts
     Creates dynamic AAD group for AADP2 user
-
-    Imports JSON representations  of conditional access policies from a policy folder
-    Creates a AAD group for each conditional access policy which will be used for exclusions
-    Either creates a new conditional access policy for each JSON representation or updates an existing policy. Updating / matching existing policies is based on the DisplayName.
+    Creates AAD group for administrative accounts that should be targeted in the M365 admin protection
+    Creates AAD group for the RING if RingTargeted was set to TRUE
+    Imports JSON representations of conditional access policies from a policy folder
+    Creates two AAD group for each conditional access policy which will be used for exclusions
+    Either creates a new conditional access policy for each JSON representation or updates an existing policy. Updating / matching existing policies requires the policy id in the JSON file.
 
 .PARAMETER Prefix
     The prefix will be used as a prefix for all groups that are created if no explicit group name is provided
