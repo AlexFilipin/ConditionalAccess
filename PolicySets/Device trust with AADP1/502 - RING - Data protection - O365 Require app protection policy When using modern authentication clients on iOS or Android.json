@@ -7,7 +7,7 @@
     "conditions": {
         "signInRiskLevels": [],
         "clientAppTypes": [
-            "modern"
+            "mobileAppsAndDesktopClients"
         ],
         "locations": null,
         "deviceStates": null,

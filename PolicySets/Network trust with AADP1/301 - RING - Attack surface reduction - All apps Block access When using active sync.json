@@ -7,8 +7,7 @@
     "conditions": {
         "signInRiskLevels": [],
         "clientAppTypes": [
-            "easSupported",
-            "easUnsupported"
+            "exchangeActiveSync"
         ],
         "platforms": null,
         "locations": null,
