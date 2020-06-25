@@ -12,7 +12,9 @@
         "deviceStates": null,
         "devices": null,
         "applications": {
-            "includeApplications": [],
+            "includeApplications": [
+                "None"
+            ],
             "excludeApplications": [],
             "includeUserActions": []
         },
