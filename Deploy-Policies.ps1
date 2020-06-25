@@ -65,6 +65,9 @@
     If no value is provided: $Prefix + "_Administrator", e.g. CA_Administrator
     If a group with that name already exists, it will be used
 
+.PARAMETER Endpoint
+    Allows you to specify the Graph endpoint (Beta or Canary), if not specified it will default to V1.0
+
 .NOTES
     Version:        1.2
     Author:         Alexander Filipin
@@ -117,6 +120,9 @@ Param(
     ,
     [Parameter(Mandatory=$False)]
     [System.String]$AdministratorGroup
+    ,
+    [Parameter(Mandatory=$False)]
+    [System.String]$Endpoint
 )
 
 #region development
@@ -127,7 +133,7 @@ $Ring = "TEST"
 $RingTargeted = $False
 $ClientId = "a4a0356b-69a5-4b85-9545-f64459010333"
 $TenantName = "filipinlabs.onmicrosoft.com"
-$PoliciesFolder = "C:\Users\filip\Downloads\tmp"
+$PoliciesFolder = "C:\Users\filip\Downloads\tmp4"
 #>
 #endregion
 
@@ -139,6 +145,13 @@ if(-not $EmergencyAccessAccountsGroup){$EmergencyAccessAccountsGroup = $Prefix +
 if(-not $RingTargeted){$RingTargeted = $False}
 if(-not $RingGroup){$RingGroup = $Prefix + "_" + $Ring}
 if(-not $AdministratorGroup){$AdministratorGroup = $Prefix + "_Administrator"}
+if($Endpoint -eq "Beta"){
+    $CAURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies"
+}elseif($Endpoint -eq "Canary"){
+    $CAURI = "TBD"
+}else{
+    $CAURI = "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies"
+}
 #endregion
 
 #region functions
@@ -161,7 +174,7 @@ function New-GraphConditionalAccessPolicy{
         [Parameter(Mandatory = $true)]
         $accessToken 
     )
-    $conditionalAccessURI = "https://graph.microsoft.com/beta/conditionalAccess/policies"
+    $conditionalAccessURI = $CAURI
     $conditionalAccessPolicyResponse = Invoke-RestMethod -Method Post -Uri $conditionalAccessURI -Headers @{"Authorization"="Bearer $accessToken"} -Body $requestBody -ContentType "application/json"
     $conditionalAccessPolicyResponse     
 }
@@ -175,7 +188,7 @@ function Remove-GraphConditionalAccessPolicy{
         [Parameter(Mandatory = $true)]
         $accessToken 
     )
-    $conditionalAccessURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies/{$Id}"
+    $conditionalAccessURI = $CAURI + "/{$Id}"
     $conditionalAccessPolicyResponse = Invoke-RestMethod -Method Delete -Uri $conditionalAccessURI -Headers @{"Authorization"="Bearer $accessToken"}
     $conditionalAccessPolicyResponse     
 }
@@ -194,14 +207,13 @@ function Get-GraphConditionalAccessPolicy{
         $Id 
     )
     if($DisplayName){
-        #$conditionalAccessURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies?`$filter=displayName eq '$DisplayName'"
-        $conditionalAccessURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies?`$filter=endswith(displayName, '$DisplayName')"
+        $conditionalAccessURI = $CAURI + "?`$filter=endswith(displayName, '$DisplayName')"
     }
     if($Id){
-        $conditionalAccessURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies/{$Id}"
+        $conditionalAccessURI = $CAURI + "/{$Id}"
     }
     if($All -eq $true){
-        $conditionalAccessURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies"
+        $conditionalAccessURI = $CAURI
     }
     $conditionalAccessPolicyResponse = Invoke-RestMethod -Method Get -Uri $conditionalAccessURI -Headers @{"Authorization"="Bearer $accessToken"}
     $conditionalAccessPolicyResponse     
@@ -218,7 +230,7 @@ function Set-GraphConditionalAccessPolicy{
         [Parameter(Mandatory = $false)]
         $Id
     )
-    $conditionalAccessURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies/{$Id}"
+    $conditionalAccessURI = $CAURI + "/{$Id}"
     $conditionalAccessPolicyResponse = Invoke-RestMethod -Method Patch -Uri $conditionalAccessURI -Headers @{"Authorization"="Bearer $accessToken"} -Body $requestBody -ContentType "application/json"
     $conditionalAccessPolicyResponse     
 }
