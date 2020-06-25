@@ -69,10 +69,10 @@
     Allows you to specify the Graph endpoint (Beta or Canary), if not specified it will default to V1.0
 
 .NOTES
-    Version:        1.2
+    Version:        1.3
     Author:         Alexander Filipin
     Creation date:  2020-04-09
-    Last modified:  2020-05-13
+    Last modified:  2020-06-25
 
     Many thanks to the two Microsoft MVPs whose publications served as a basis for this script:
         Jan Vidar Elven's work https://github.com/JanVidarElven/MicrosoftGraph-ConditionalAccess
