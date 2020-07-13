@@ -1,5 +1,5 @@
 {
-    "displayName": "103 - <RING> - Admin protection - All apps: Block access For internal M365 admins When any risk is detected",
+    "displayName": "103 - <RING> - Admin protection - All apps: Block access For internal M365 admins When any sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",

@@ -1,12 +1,12 @@
 {
-    "displayName": "204 - <RING> - Base protection - All apps: Require MFA For AADP2 users When medium risk is detected",
+    "displayName": "205 - <RING> - Base protection - All apps: Block access For AADP2 users When high sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
         "signInRiskLevels": [
-            "medium"
+            "high"
         ],
         "clientAppTypes": [],
         "platforms": null,
@@ -40,7 +40,7 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "mfa"
+            "block"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

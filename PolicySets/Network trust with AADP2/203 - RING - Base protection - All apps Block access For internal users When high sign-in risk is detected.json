@@ -1,5 +1,5 @@
 {
-    "displayName": "203 - <RING> - Base protection - All apps: Block access For internal users When high risk is detected",
+    "displayName": "203 - <RING> - Base protection - All apps: Block access For internal users When high sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",

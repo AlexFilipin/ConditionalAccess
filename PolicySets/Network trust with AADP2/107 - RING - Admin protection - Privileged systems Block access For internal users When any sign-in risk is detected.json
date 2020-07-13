@@ -1,33 +1,34 @@
 {
-    "displayName": "204 - <RING> - Base protection - All apps: Require MFA For AADP2 users When medium risk is detected",
+    "displayName": "107 - <RING> - Admin protection - Privileged systems: Block access For internal users When any sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
         "signInRiskLevels": [
-            "medium"
+            "high",
+            "medium",
+            "low"
         ],
         "clientAppTypes": [],
         "platforms": null,
         "locations": null,
         "deviceStates": null,
-        "devices": null,
         "applications": {
             "includeApplications": [
-                "All"
+                "797f4846-ba00-4fd7-ba43-dac1f8f63013"
             ],
             "excludeApplications": [],
             "includeUserActions": []
         },
         "users": {
-            "includeUsers": [],
+            "includeUsers": [
+                "All"
+            ],
             "excludeUsers": [
                 "GuestsOrExternalUsers"
             ],
-            "includeGroups": [
-                "<AADP2Group>"
-            ],
+            "includeGroups": [],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",
@@ -40,7 +41,7 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "mfa"
+            "block"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []
