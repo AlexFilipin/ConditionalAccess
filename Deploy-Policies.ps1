@@ -66,7 +66,7 @@
     If a group with that name already exists, it will be used
 
 .PARAMETER Endpoint
-    Allows you to specify the Graph endpoint (Beta or Canary), if not specified it will default to V1.0
+    Allows you to specify the Graph endpoint (Beta or Canary), if not specified it will default to Beta
 
 .NOTES
     Version:        1.3
@@ -149,8 +149,10 @@ if($Endpoint -eq "Beta"){
     $CAURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies"
 }elseif($Endpoint -eq "Canary"){
     $CAURI = "TBD"
-}else{
+}elseif($Endpoint -eq "V1"){
     $CAURI = "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies"
+}else{
+    $CAURI = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies"
 }
 #endregion
 
