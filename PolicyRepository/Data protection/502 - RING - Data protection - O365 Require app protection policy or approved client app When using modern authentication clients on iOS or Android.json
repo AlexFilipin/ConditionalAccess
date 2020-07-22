@@ -1,5 +1,5 @@
 {
-    "displayName": "503 - <RING> - Data protection - O365: Require approved client app When using modern authentication clients on iOS or Android",
+    "displayName": "502 - <RING> - Data protection - O365: Require app protection policy or approved client app When using modern authentication clients on iOS or Android",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -43,6 +43,7 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
+            "compliantApplication",
             "approvedApplication"
         ],
         "customAuthenticationFactors": [],
