@@ -6,7 +6,10 @@
     "sessionControls": null,
     "conditions": {
         "signInRiskLevels": [],
-        "clientAppTypes": [],
+        "clientAppTypes": [
+            "browser",
+            "mobileAppsAndDesktopClients"
+        ],
         "locations": null,
         "deviceStates": null,
         "applications": {

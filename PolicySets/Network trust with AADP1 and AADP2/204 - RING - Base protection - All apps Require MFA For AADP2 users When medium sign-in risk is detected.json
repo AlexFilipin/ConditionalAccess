@@ -8,7 +8,10 @@
         "signInRiskLevels": [
             "medium"
         ],
-        "clientAppTypes": [],
+        "clientAppTypes": [
+            "browser",
+            "mobileAppsAndDesktopClients"
+        ],
         "platforms": null,
         "locations": null,
         "deviceStates": null,

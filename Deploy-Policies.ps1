@@ -133,7 +133,7 @@ $Ring = "TEST"
 $RingTargeted = $False
 $ClientId = "a4a0356b-69a5-4b85-9545-f64459010333"
 $TenantName = "filipinlabs.onmicrosoft.com"
-$PoliciesFolder = "C:\Users\filip\Downloads\tmp4"
+$PoliciesFolder = "D:\tmp\CA"
 #>
 #endregion
 
