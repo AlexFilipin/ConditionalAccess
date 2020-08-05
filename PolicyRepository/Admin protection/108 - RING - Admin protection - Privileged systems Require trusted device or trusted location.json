@@ -1,23 +1,20 @@
 {
-    "displayName": "203 - <RING> - Base protection - All apps: Block access For internal users When high sign-in risk is detected",
+    "displayName": "108 - <RING> - Admin protection - Privileged systems: Require trusted device or trusted location",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "signInRiskLevels": [
-            "high"
-        ],
+        "signInRiskLevels": [],
         "clientAppTypes": [
             "browser",
             "mobileAppsAndDesktopClients"
         ],
         "platforms": null,
-        "locations": null,
         "deviceStates": null,
         "applications": {
             "includeApplications": [
-                "All"
+                "797f4846-ba00-4fd7-ba43-dac1f8f63013"
             ],
             "excludeApplications": [],
             "includeUserActions": []
@@ -26,9 +23,7 @@
             "includeUsers": [
                 "All"
             ],
-            "excludeUsers": [
-                "GuestsOrExternalUsers"
-            ],
+            "excludeUsers": [],
             "includeGroups": [],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
@@ -37,12 +32,21 @@
             ],
             "includeRoles": [],
             "excludeRoles": []
+        },
+        "locations": {
+            "includeLocations": [
+                "All"
+            ],
+            "excludeLocations": [
+                "AllTrusted"
+            ]
         }
     },
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "compliantDevice",
+            "domainJoinedDevice"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

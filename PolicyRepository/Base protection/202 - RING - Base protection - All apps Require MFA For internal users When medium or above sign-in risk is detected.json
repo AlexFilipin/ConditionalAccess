@@ -1,14 +1,13 @@
 {
-    "displayName": "107 - <RING> - Admin protection - Privileged systems: Block access For internal users When any sign-in risk is detected",
+    "displayName": "202 - <RING> - Base protection - All apps: Require MFA For internal users When medium or above sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
         "signInRiskLevels": [
-            "high",
             "medium",
-            "low"
+            "high"
         ],
         "clientAppTypes": [
             "browser",
@@ -19,7 +18,7 @@
         "deviceStates": null,
         "applications": {
             "includeApplications": [
-                "797f4846-ba00-4fd7-ba43-dac1f8f63013"
+                "All"
             ],
             "excludeApplications": [],
             "includeUserActions": []
@@ -44,7 +43,7 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "mfa"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

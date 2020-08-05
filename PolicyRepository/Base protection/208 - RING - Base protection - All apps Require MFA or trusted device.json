@@ -1,20 +1,18 @@
 {
-    "displayName": "203 - <RING> - Base protection - All apps: Block access For internal users When high sign-in risk is detected",
+    "displayName": "208 - <RING> - Base protection - All apps: Require MFA or trusted device",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "signInRiskLevels": [
-            "high"
-        ],
+        "signInRiskLevels": [],
         "clientAppTypes": [
             "browser",
             "mobileAppsAndDesktopClients"
         ],
         "platforms": null,
-        "locations": null,
         "deviceStates": null,
+        "locations": null,
         "applications": {
             "includeApplications": [
                 "All"
@@ -26,14 +24,13 @@
             "includeUsers": [
                 "All"
             ],
-            "excludeUsers": [
-                "GuestsOrExternalUsers"
-            ],
+            "excludeUsers": [],
             "includeGroups": [],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",
-                "<EmergencyAccessAccountsGroup>"
+                "<EmergencyAccessAccountsGroup>",
+                "<SynchronizationServiceAccountsGroup>"
             ],
             "includeRoles": [],
             "excludeRoles": []
@@ -42,7 +39,9 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "mfa",
+            "compliantDevice",
+            "domainJoinedDevice"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []
