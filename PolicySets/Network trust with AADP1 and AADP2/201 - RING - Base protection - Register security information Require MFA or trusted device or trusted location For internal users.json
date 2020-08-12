@@ -1,5 +1,5 @@
 {
-    "displayName": "201 - <RING> - Base protection - Register security information: Require trusted device or location For internal users",
+    "displayName": "201 - <RING> - Base protection - Register security information: Require MFA or trusted device or trusted location For internal users",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -47,6 +47,7 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
+            "mfa",
             "compliantDevice",
             "domainJoinedDevice"
         ],
