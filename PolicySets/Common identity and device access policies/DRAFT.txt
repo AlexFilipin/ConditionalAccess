@@ -1,0 +1,32 @@
+Policy draft based on https://docs.microsoft.com/en-us/microsoft-365/enterprise/identity-access-policies?view=o365-worldwide
+
+The following policies are partly contradictory, the primary purpose of this draft is to check if the existing policies cover everything that is recommended in the common identity and device access policies.
+
+Baseline - Require MFA when sign-in risk is medium or high EXCLUDE Guests and External Users
+    Check
+Baseline - Require MFA always for guest and external users
+    Check via Base Protection
+Baseline - High risk users must change password
+    Difference: Policy sets exclude Guests and External Users
+Baseline - Block clients that don't support modern authentication
+    Check
+Baseline - Block ActiveSync clients
+    Check
+Baseline - Require approved apps and app protection (on mobile)
+    Difference: Only for O365
+Baseline - Require compliant PCs EXCLUDE Guests and External Users
+    Difference: Not at all in the base protection but could be added via application protection
+Baseline - Use app enforced restrictions in SharePoint
+    Check
+
+Sensitive - Require MFA when sign-in risk is low, medium, or high
+    Difference: Missing
+Sensitive - Require compliant PCs and mobile devices (Require compliant device)
+    Difference: Application protection offers this
+Sensitive - Allow browser-only access to specific SharePoint sites from unmanaged devices
+    Difference: Policy sets offer this in general for SPO
+
+Highly regulated - Always require MFA
+    Difference: Application protection offers this
+Highly regulated - Block access to specific SharePoint sites from unmanaged devices
+    Difference: Missing
