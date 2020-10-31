@@ -1,6 +1,0 @@
-This will be a vNext draft of a pure zero trust policy set, thoughts
-    Further allign existing "Device trust AADP2" to common identity and device access policies
-    Split admin protection into Member vs. Guest?
-    Instead of blocking unsupported / unknown platforms, limit them to browser?
-    Optimize naming?
-    ..?
