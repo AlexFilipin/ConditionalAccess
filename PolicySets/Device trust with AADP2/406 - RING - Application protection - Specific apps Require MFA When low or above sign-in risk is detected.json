@@ -1,20 +1,24 @@
 {
-    "displayName": "106 - <RING> - Admin protection - Privileged systems: Require trusted location",
+    "displayName": "202 - <RING> - Base protection - All apps: Require MFA When medium or above sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "signInRiskLevels": [],
+        "signInRiskLevels": [
+            "medium",
+            "high"
+        ],
         "clientAppTypes": [
             "browser",
             "mobileAppsAndDesktopClients"
         ],
         "platforms": null,
+        "locations": null,
         "deviceStates": null,
         "applications": {
             "includeApplications": [
-                "797f4846-ba00-4fd7-ba43-dac1f8f63013"
+                "All"
             ],
             "excludeApplications": [],
             "includeUserActions": []
@@ -32,20 +36,12 @@
             ],
             "includeRoles": [],
             "excludeRoles": []
-        },
-        "locations": {
-            "includeLocations": [
-                "All"
-            ],
-            "excludeLocations": [
-                "AllTrusted"
-            ]
         }
     },
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "mfa"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

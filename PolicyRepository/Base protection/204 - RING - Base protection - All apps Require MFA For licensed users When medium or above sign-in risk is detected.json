@@ -1,16 +1,17 @@
 {
-    "displayName": "206 - <RING> - Base protection - All apps: Require password change For internal users When high user risk is detected",
+    "displayName": "204 - <RING> - Base protection - All apps: Require MFA For licensed users When medium or above sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "userRiskLevels": [
+        "signInRiskLevels": [
+            "medium",
             "high"
         ],
-        "signInRiskLevels": [],
         "clientAppTypes": [
-            "All"
+            "browser",
+            "mobileAppsAndDesktopClients"
         ],
         "platforms": null,
         "locations": null,
@@ -24,13 +25,11 @@
             "includeUserActions": []
         },
         "users": {
-            "includeUsers": [
-                "All"
+            "includeUsers": [],
+            "excludeUsers": [],
+            "includeGroups": [
+                "<AADP2Group>"
             ],
-            "excludeUsers": [
-                "GuestsOrExternalUsers"
-            ],
-            "includeGroups": [],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",
@@ -41,10 +40,9 @@
         }
     },
     "grantControls": {
-        "operator": "AND",
+        "operator": "OR",
         "builtInControls": [
-            "mfa",
-            "passwordChange"
+            "mfa"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

@@ -1,11 +1,13 @@
 {
-    "displayName": "203 - <RING> - Base protection - All apps: Block access When high sign-in risk is detected",
+    "displayName": "407 - <RING> - Application protection - Specific apps: Require MFA For licensed users When low or above sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
         "signInRiskLevels": [
+            "low",
+            "medium",
             "high"
         ],
         "clientAppTypes": [
@@ -15,6 +17,7 @@
         "platforms": null,
         "locations": null,
         "deviceStates": null,
+        "devices": null,
         "applications": {
             "includeApplications": [
                 "All"
@@ -23,11 +26,11 @@
             "includeUserActions": []
         },
         "users": {
-            "includeUsers": [
-                "All"
-            ],
+            "includeUsers": [],
             "excludeUsers": [],
-            "includeGroups": [],
+            "includeGroups": [
+                "<AADP2Group>"
+            ],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",
@@ -40,7 +43,7 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "mfa"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []
