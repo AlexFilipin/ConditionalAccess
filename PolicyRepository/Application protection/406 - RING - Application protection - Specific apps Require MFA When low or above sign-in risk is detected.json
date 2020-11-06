@@ -1,11 +1,12 @@
 {
-    "displayName": "202 - <RING> - Base protection - All apps: Require MFA When medium or above sign-in risk is detected",
+    "displayName": "406 - <RING> - Application protection - Specific apps: Require MFA When low or above sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
         "signInRiskLevels": [
+            "low",
             "medium",
             "high"
         ],
@@ -16,6 +17,7 @@
         "platforms": null,
         "locations": null,
         "deviceStates": null,
+        "devices": null,
         "applications": {
             "includeApplications": [
                 "All"
