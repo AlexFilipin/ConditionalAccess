@@ -20,7 +20,7 @@
         "devices": null,
         "applications": {
             "includeApplications": [
-                "All"
+                "None"
             ],
             "excludeApplications": [],
             "includeUserActions": []
