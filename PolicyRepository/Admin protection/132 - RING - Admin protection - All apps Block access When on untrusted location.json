@@ -1,5 +1,5 @@
 {
-    "displayName": "131 - <RING> - Admin protection - All apps: Require trusted device For ring",
+    "displayName": "132 - <RING> - Admin protection - All apps: Block access When on untrusted location",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -11,7 +11,6 @@
             "mobileAppsAndDesktopClients"
         ],
         "platforms": null,
-        "locations": null,
         "deviceStates": null,
         "applications": {
             "includeApplications": [
@@ -33,13 +32,20 @@
             ],
             "includeRoles": [],
             "excludeRoles": []
+        },
+        "locations": {
+            "includeLocations": [
+                "All"
+            ],
+            "excludeLocations": [
+                "AllTrusted"
+            ]
         }
     },
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "compliantDevice",
-            "domainJoinedDevice"
+            "block"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

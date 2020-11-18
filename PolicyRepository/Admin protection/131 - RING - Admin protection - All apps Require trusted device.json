@@ -1,5 +1,5 @@
 {
-    "displayName": "130 - <RING> - Admin protection - All apps: Require MFA For ring",
+    "displayName": "131 - <RING> - Admin protection - All apps: Require trusted device",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -38,7 +38,8 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "mfa"
+            "compliantDevice",
+            "domainJoinedDevice"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []
