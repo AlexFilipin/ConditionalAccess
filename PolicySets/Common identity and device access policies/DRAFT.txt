@@ -1,8 +1,6 @@
 Policy draft based on https://docs.microsoft.com/en-us/microsoft-365/enterprise/identity-access-policies?view=o365-worldwide
 
-
-
-The following policies are partly contradictory, the primary purpose of this draft is to check if the existing policies cover everything that is recommended in the common identity and device access policies.
+Common identity and device access policies VS CAasCode policy sets
 
 Missing in the common identity and device access policies
 - Admin protection (M365, Priv. systems)
