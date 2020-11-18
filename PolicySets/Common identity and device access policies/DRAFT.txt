@@ -4,6 +4,12 @@ Policy draft based on https://docs.microsoft.com/en-us/microsoft-365/enterprise/
 
 The following policies are partly contradictory, the primary purpose of this draft is to check if the existing policies cover everything that is recommended in the common identity and device access policies.
 
+Missing in the common identity and device access policies
+- Admin protection (M365, Priv. systems)
+- Service account protection
+- Limit strong auth registration
+- Block or limit unkown platforms to complete DLP
+- KMSI settings and sign-in frequency on untrusted devices
 
 
 Baseline - Require MFA when sign-in risk is medium or high EXCLUDE Guests and External Users
