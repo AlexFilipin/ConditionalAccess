@@ -27,6 +27,8 @@ A script based automation solution to deploy and update policy sets in environme
 
 **Together, these three components enable an extremely fast deployment of conditional access concepts and their long-term maintenance, e.g. in the form of source control.**
 
+![Example policy set](https://i.imgur.com/g08eQN6.png)
+
 # Get started with the [Quick-start wiki](https://github.com/AlexFilipin/ConditionalAccess/wiki#quick-start)
 
 Although I work for Microsoft, this is not an official recommendation, I exclude any liability and warranty. This is only a personal recommendation which has to be implemented with the utmost care and testing.
