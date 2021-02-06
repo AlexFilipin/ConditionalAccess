@@ -1,6 +1,6 @@
 # Conditional Access as Code
 
-Introducing Conditional Access as Code. A fully automated solution to kick-start and maintain your Conditional Access deployment. The solution consists of three main components.
+Introducing Conditional Access as Code. A fully automated solution to kick-start and maintain your Conditional Access deployment. The solution consists of the follwong three main components and is based on the [Conditional Access guidance](https://github.com/AlexFilipin/ConditionalAccess/wiki/Conditional-access-guidance).
 
 ## Policy repository
 A collection of conditional access policies in JSON format which are divided into the following categories:
