@@ -34,13 +34,16 @@
             "excludeRoles": []
         },
         "devices": {
-            "includeDeviceStates": [
+            "includeDeviceStates": [],
+            "excludeDeviceStates": [],
+            "includeDevices": [
                 "All"
             ],
-            "excludeDeviceStates": [
+            "excludeDevices": [
                 "Compliant",
                 "DomainJoined"
-            ]
+            ],
+            "deviceFilter": null
         }
     },
     "sessionControls": {
