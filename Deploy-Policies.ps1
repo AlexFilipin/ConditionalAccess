@@ -126,14 +126,14 @@ Param(
 )
 
 #region development
-<#
+
 $DebugMode = $True
-$Prefix = "CA"
-$Ring = "TEST"
+$Prefix = "ZT"
+$Ring = "ALL"
 $RingTargeted = $False
 $ClientId = "a4a0356b-69a5-4b85-9545-f64459010333"
 $TenantName = "filipinlabs.onmicrosoft.com"
-$PoliciesFolder = "D:\tmp\CA"
+$PoliciesFolder = "C:\AF\tmp"
 #>
 #endregion
 

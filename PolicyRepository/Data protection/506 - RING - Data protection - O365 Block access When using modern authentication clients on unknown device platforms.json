@@ -1,5 +1,5 @@
 {
-    "displayName": "502 - <RING> - Data protection - O365: Require app protection policy or approved client app When using modern authentication clients on iOS or Android",
+    "displayName": "506 - <RING> - Data protection - O365: Block access When using modern authentication clients on unknown device platforms",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -34,17 +34,20 @@
         },
         "platforms": {
             "includePlatforms": [
-                "android",
-                "iOS"
+                "all"
             ],
-            "excludePlatforms": []
+            "excludePlatforms": [
+                "android",
+                "iOS",
+                "windows",
+                "macOS"
+            ]
         }
     },
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "compliantApplication",
-            "approvedApplication"
+            "block"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

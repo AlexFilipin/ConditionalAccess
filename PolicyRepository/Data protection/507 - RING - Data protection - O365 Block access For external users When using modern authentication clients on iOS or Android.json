@@ -1,0 +1,51 @@
+{
+    "displayName": "507 - <RING> - Data protection - O365: Block access For external users When using modern authentication clients on iOS or Android",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "mobileAppsAndDesktopClients"
+        ],
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "Office365"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "GuestsOrExternalUsers"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        },
+        "platforms": {
+            "includePlatforms": [
+                "android",
+                "iOS"
+            ],
+            "excludePlatforms": []
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "block"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}
