@@ -1,15 +1,16 @@
 #Policy cleanup
-$Policies = Get-GraphConditionalAccessPolicy -accessToken $accessToken -All $true
-$SelectedPolicies = $Policies.value | Out-GridView -PassThru
+$Policies = Get-MgIdentityConditionalAccessPolicy -All
+
+$SelectedPolicies = $Policies | Out-GridView -PassThru
 foreach($Item in $SelectedPolicies){
-    Remove-GraphConditionalAccessPolicy -accessToken $accessToken -Id $Item.id
+    Remove-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Item.Id
     Start-Sleep -Seconds 1
 }
 
 #Group cleanup
-$Groups = Get-AzureADGroup -Filter "startswith(DisplayName,'CA')"
-$Groups = Get-AzureADGroup -All $true
+$Groups = Get-MgGroup -Filter "startswith(DisplayName,'ZT')"
+#$Groups = Get-MgGroup -All
 $SelectedGroups = $Groups | Out-GridView -PassThru
 foreach($Item in $SelectedGroups){
-    Remove-AzureADGroup -ObjectId $Item.ObjectId
+    Remove-MgGroup -GroupId $Item.Id
 }
