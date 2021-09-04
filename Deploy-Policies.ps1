@@ -127,7 +127,8 @@ if($Endpoint -eq "Beta"){
 }else{
     Select-MgProfile -Name "beta"
 }
-Connect-MgGraph -Scopes "Policy.ReadWrite.ConditionalAccess","Group.ReadWrite.All"
+try{Disconnect-MgGraph -ErrorAction SilentlyContinue}catch{}
+Connect-MgGraph -Scopes "Policy.ReadWrite.ConditionalAccess","Group.ReadWrite.All" -ErrorAction Stop
 #endregion
 
 #region parameters
@@ -144,46 +145,46 @@ if(-not $AdministratorGroup){$AdministratorGroup = $Prefix + "_Administrator"}
 function New-AFAzureADGroup($Name){
     $Group = Get-MgGroup -Filter "DisplayName eq '$Name'"
     if(-not $Group){
-        Write-Host "Creating group:" $Name -ForegroundColor Green
+        Write-Host "Creating group: $Name"
         $Group = New-MgGroup -DisplayName $Name -SecurityEnabled:$true -MailEnabled:$false -MailNickname "NotSet"
     }
-    Write-Host "ObjectId for" $Name $Group.Id -ForegroundColor Green
+    Write-Host "ObjectId for $Name $($Group.Id)" 
     return $Group.Id
 }
 #endregion
 
 #region create groups
-Write-Host "Creating or receiving group:" $SynchronizationServiceAccountsGroup -ForegroundColor Green
+Write-Host "Creating or receiving group: $SynchronizationServiceAccountsGroup" 
 $ObjectID_SynchronizationServiceAccounts = New-AFAzureADGroup -Name $SynchronizationServiceAccountsGroup
 
-Write-Host "Creating or receiving group:" $EmergencyAccessAccountsGroup -ForegroundColor Green
+Write-Host "Creating or receiving group: $EmergencyAccessAccountsGroup" 
 $ObjectID_EmergencyAccessAccounts = New-AFAzureADGroup -Name $EmergencyAccessAccountsGroup
 
-Write-Host "Creating or receiving group:" $AdministratorGroup -ForegroundColor Green
+Write-Host "Creating or receiving group: $AdministratorGroup" 
 $ObjectID_AdministratorGroup = New-AFAzureADGroup -Name $AdministratorGroup
 
 if($RingTargeted){
-    Write-Host "Creating or receiving group:" $RingGroup -ForegroundColor Green
+    Write-Host "Creating or receiving group: $RingGroup" 
     $ObjectID_RingGroup = New-AFAzureADGroup -Name $RingGroup
 }
 
 #create dynamic group if not yet existing
-Write-Host "Creating or receiving group:" $AADP2Group -ForegroundColor Green
+Write-Host "Creating or receiving group: $AADP2Group" 
 $Group_AADP2 = Get-MgGroup -Filter "DisplayName eq '$AADP2Group'"
 if(-not $Group_AADP2){
-    Write-Host "Creating group:" $AADP2Group -ForegroundColor Green
+    Write-Host "Creating group: $AADP2Group"
     $MembershipRule = 'user.assignedPlans -any (assignedPlan.servicePlanId -eq "eec0eb4f-6444-4f95-aba0-50c24d67f998" -and assignedPlan.capabilityStatus -eq "Enabled")'
     $Group_AADP2 = New-MgGroup -DisplayName $AADP2Group -MailEnabled:$False -MailNickname "NotSet" -SecurityEnabled:$True -GroupTypes "DynamicMembership" -MembershipRule $MembershipRule -MembershipRuleProcessingState "On"
-    Write-Host "ObjectId for" $AADP2Group $Group_AADP2.Id -ForegroundColor Green
+    Write-Host "ObjectId for $AADP2Group $($Group_AADP2.Id)" 
     $ObjectID_AADP2 = $Group_AADP2.Id
 }else{
-    Write-Host "ObjectId for" $AADP2Group $Group_AADP2.Id -ForegroundColor Green
+    Write-Host "ObjectId for $AADP2Group $($Group_AADP2.Id)" 
     $ObjectID_AADP2 = $Group_AADP2.Id
 }
 #endregion
 
 #region import policy templates
-Write-Host "Importing policy templates" -ForegroundColor Green
+Write-Host "Importing policy templates"
 $Templates = Get-ChildItem -Path $PoliciesFolder
 $Policies = foreach($Item in $Templates){
     $Policy = Get-Content -Raw -Path $Item.FullName | ConvertFrom-Json
@@ -193,21 +194,21 @@ $Policies = foreach($Item in $Templates){
 
 #region create or update policies
 foreach($Policy in $Policies){
-    Write-Host "Working on policy:" $Policy.displayName -ForegroundColor Green
+    Write-Host "Working on policy: $($Policy.displayName)" 
     $PolicyNumber = $Policy.displayName.Substring(0, 3)
 
     #Create temp exlusion group
-    Write-Host "Creating or receiving temp exclusion group" -ForegroundColor Green
+    Write-Host "Creating or receiving temp exclusion group"
     $DisplayName_Temp_Exclusion = $ExclusionGroupsPrefix + $PolicyNumber + "_" + $Ring + "_Temp"
     $ObjectID_Temp_Exclusion = New-AFAzureADGroup -Name $DisplayName_Temp_Exclusion
 
     #Create perm exlusion group
-    Write-Host "Creating or receiving perm exclusion group" -ForegroundColor Green
+    Write-Host "Creating or receiving perm exclusion group" 
     $DisplayName_Perm_Exclusion = $ExclusionGroupsPrefix + $PolicyNumber + "_" + $Ring + "_Perm"
     $ObjectID_Perm_Exclusion = New-AFAzureADGroup -Name $DisplayName_Perm_Exclusion
 
     #REPLACEMENTS
-    Write-Host "Working on replacements" -ForegroundColor Green
+    Write-Host "Working on replacements"
     #Add prefix to DisplayName
     $Policy.displayName = $Policy.displayName.Replace("<RING>",$Ring)
 
@@ -217,12 +218,12 @@ foreach($Policy in $Policies){
 
             #Remove all user scope
             [System.Collections.ArrayList]$includeUsers = $Policy.conditions.users.includeUsers
-            $includeUsers.Remove("All")
+            $includeUsers.Remove("All") > $null
             $Policy.conditions.users.includeUsers = $includeUsers
 
             #Add ring group
             [System.Collections.ArrayList]$includeGroups = $Policy.conditions.users.includeGroups
-            $includeGroups.Add($ObjectID_RingGroup)
+            $includeGroups.Add($ObjectID_RingGroup) > $null
             $Policy.conditions.users.includeGroups = $includeGroups
 
         }
@@ -233,14 +234,14 @@ foreach($Policy in $Policies){
 
         #Replace Conditional_Access_AADP2
         if($includeGroups.Contains("<AADP2Group>")){
-            $includeGroups.Add($ObjectID_AADP2)
-            $includeGroups.Remove("<AADP2Group>")
+            $includeGroups.Add($ObjectID_AADP2) > $null
+            $includeGroups.Remove("<AADP2Group>") > $null
         }
 
         #Replace AdministratorGroup
         if($includeGroups.Contains("<AdministratorGroup>")){
-            $includeGroups.Add($ObjectID_AdministratorGroup)
-            $includeGroups.Remove("<AdministratorGroup>")
+            $includeGroups.Add($ObjectID_AdministratorGroup) > $null
+            $includeGroups.Remove("<AdministratorGroup>") > $null
         }
 
         $Policy.conditions.users.includeGroups = $includeGroups
@@ -251,23 +252,23 @@ foreach($Policy in $Policies){
 
         #Replace Conditional_Access_Temp_Exclusion
         if($excludeGroups.Contains("<ExclusionTempGroup>")){
-            $excludeGroups.Add($ObjectID_Temp_Exclusion)
-            $excludeGroups.Remove("<ExclusionTempGroup>")
+            $excludeGroups.Add($ObjectID_Temp_Exclusion) > $null
+            $excludeGroups.Remove("<ExclusionTempGroup>") > $null
         }
         #Replace Conditional_Access_Perm_Exclusion
         if($excludeGroups.Contains("<ExclusionPermGroup>")){
-            $excludeGroups.Add($ObjectID_Perm_Exclusion)
-            $excludeGroups.Remove("<ExclusionPermGroup>")
+            $excludeGroups.Add($ObjectID_Perm_Exclusion) > $null
+            $excludeGroups.Remove("<ExclusionPermGroup>") > $null
         }
         #Replace Conditional_Access_Exclusion_SynchronizationServiceAccounts
         if($excludeGroups.Contains("<SynchronizationServiceAccountsGroup>")){
-            $excludeGroups.Add($ObjectID_SynchronizationServiceAccounts)
-            $excludeGroups.Remove("<SynchronizationServiceAccountsGroup>")
+            $excludeGroups.Add($ObjectID_SynchronizationServiceAccounts) > $null
+            $excludeGroups.Remove("<SynchronizationServiceAccountsGroup>") > $null
         }
         #Replace Conditional_Access_Exclusion_EmergencyAccessAccounts
         if($excludeGroups.Contains("<EmergencyAccessAccountsGroup>")){
-            $excludeGroups.Add($ObjectID_EmergencyAccessAccounts)
-            $excludeGroups.Remove("<EmergencyAccessAccountsGroup>")
+            $excludeGroups.Add($ObjectID_EmergencyAccessAccounts) > $null
+            $excludeGroups.Remove("<EmergencyAccessAccountsGroup>") > $null
         }
 
         $Policy.conditions.users.excludeGroups = $excludeGroups
@@ -278,23 +279,27 @@ foreach($Policy in $Policies){
     $requestBody = $Policy | ConvertTo-Json -Depth 3
 
     if($Policy.id){
-        Write-Host "Template includes policy id - trying to update existing policy" $Policy.id -ForegroundColor Green
+        Write-Host "Template includes policy id - trying to update existing policy $($Policy.id)" 
         $Result = Get-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.id -ErrorAction SilentlyContinue
 
-        Start-Sleep -Seconds 3
+        Start-Sleep -Seconds 2
 
         if($Result){
-            Write-Host "Updating existing policy" $Policy.id -ForegroundColor Yellow 
+            Write-Host "Updating existing policy $($Policy.id)"
             Update-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.id -BodyParameter $requestBody
         }else{
-            Write-Host "No existing policy found - abort cannot update" -ForegroundColor Red
+            Write-Host "No existing policy found - abort cannot update"
         }
     }else{
-        Write-Host "Template does not include policy id - creating new policy" -ForegroundColor Green
+        Write-Host "Template does not include policy id - creating new policy"
         New-MgIdentityConditionalAccessPolicy -BodyParameter $requestBody
     }
 
-    Start-Sleep -Seconds 3
+    Start-Sleep -Seconds 2
 
 }
+#endregion
+
+#region disconnect
+try{Disconnect-MgGraph -ErrorAction SilentlyContinue}catch{}
 #endregion
