@@ -1,5 +1,5 @@
 try{Disconnect-MgGraph -ErrorAction SilentlyContinue}catch{}
-Connect-MgGraph -Scopes "Policy.ReadWrite.ConditionalAccess","Group.ReadWrite.All" -ErrorAction Stop
+Connect-MgGraph -Scopes "Application.Read.All","Group.ReadWrite.All","Policy.Read.All","Policy.ReadWrite.ConditionalAccess" -ErrorAction Stop
 
 #Policy cleanup
 $Policies = Get-MgIdentityConditionalAccessPolicy -All

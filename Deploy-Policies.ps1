@@ -64,10 +64,10 @@
     Allows you to specify the Graph endpoint (Beta or Canary), if not specified it will default to Beta
 
 .NOTES
-    Version:        2.0
+    Version:        2.1
     Author:         Alexander Filipin
     Creation date:  2020-04-09
-    Last modified:  2021-09-04
+    Last modified:  2021-09-05
 
     Many thanks to the two Microsoft MVPs whose publications served as a basis for this script:
         Jan Vidar Elven's work https://github.com/JanVidarElven/MicrosoftGraph-ConditionalAccess
@@ -279,19 +279,19 @@ foreach($Policy in $Policies){
     $requestBody = $Policy | ConvertTo-Json -Depth 3
 
     if($Policy.id){
-        Write-Host "Template includes policy id - trying to update existing policy $($Policy.id)" 
+        Write-Host "Template includes policy id - trying to update existing policy $($Policy.id)" -ForegroundColor Magenta
         $Result = Get-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.id -ErrorAction SilentlyContinue
 
         Start-Sleep -Seconds 2
 
         if($Result){
-            Write-Host "Updating existing policy $($Policy.id)"
+            Write-Host "Updating existing policy $($Policy.id)" -ForegroundColor Green
             Update-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.id -BodyParameter $requestBody
         }else{
-            Write-Host "No existing policy found - abort cannot update"
+            Write-Host "No existing policy found - abort cannot update" -ForegroundColor Red
         }
     }else{
-        Write-Host "Template does not include policy id - creating new policy"
+        Write-Host "Template does not include policy id - creating new policy" -ForegroundColor Green
         New-MgIdentityConditionalAccessPolicy -BodyParameter $requestBody
     }
 
