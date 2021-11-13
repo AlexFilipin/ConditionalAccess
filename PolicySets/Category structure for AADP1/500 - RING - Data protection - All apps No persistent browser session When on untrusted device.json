@@ -35,16 +35,10 @@
             "excludeRoles": []
         },
         "devices": {
-            "includeDeviceStates": [],
-            "excludeDeviceStates": [],
-            "includeDevices": [
-                "All"
-            ],
-            "excludeDevices": [
-                "Compliant",
-                "DomainJoined"
-            ],
-            "deviceFilter": null
+            "deviceFilter": {
+                "mode": "exclude",
+                "rule": "device.isCompliant -eq True -or device.trustType -eq \"ServerAD\""
+            }
         }
     },
     "sessionControls": {
