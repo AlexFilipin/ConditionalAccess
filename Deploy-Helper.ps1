@@ -1,4 +1,4 @@
 .\Deploy-Policies.ps1 `
 -Prefix "ZT" `
 -Ring "ALL" `
--PoliciesFolder "C:\AF\Repos\ConditionalAccess\PolicySets\Device trust with AADP2"
+-PoliciesFolder "C:\AF\Repos\ConditionalAccess\PolicySets\Category structure for AADP1 and AADP2 mixture"
