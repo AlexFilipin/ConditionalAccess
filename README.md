@@ -11,7 +11,7 @@ Although I work for Microsoft, this is not an official recommendation, I exclude
 # Supplementary information
 
 ## [Policy repository](https://github.com/AlexFilipin/ConditionalAccess/tree/master/PolicyRepository)
-A collection of conditional access policies in JSON format which are divided into the following categories:
+A collection of conditional access policies in JSON format which are divided into the following categories and used for policy sets:
 * Admin protection
 * Application protection
 * Attack surface reduction
@@ -19,17 +19,18 @@ A collection of conditional access policies in JSON format which are divided int
 * Compliance
 * Data protection
 
+You should NOT deploy all policies in the policy repository - deploy ONE policy set - for more information refer to the quick start wiki.
+
 ## [Policy sets](https://github.com/AlexFilipin/ConditionalAccess/tree/master/PolicySets)
 Policy sets are based on the policies in the repository and form complete policy sets depending on company maturity and licensing:
 * Bare minimum
 * Device trust with AADP1
 * Device trust with AADP1 and AADP2
 * Device trust with AADP2
-* Your custom policy set
 
 ## [PowerShell automation script](https://github.com/AlexFilipin/ConditionalAccess/blob/master/Deploy-Policies.ps1)
 A script based automation solution to deploy and update policy sets in environments.
 
 **Together, these three components enable an extremely fast deployment of conditional access concepts and their long-term maintenance, e.g. in the form of source control.**
 
-![Example policy set](https://i.imgur.com/g08eQN6.png)
+![Example policy set](https://i.imgur.com/9EfsHNk.png)
