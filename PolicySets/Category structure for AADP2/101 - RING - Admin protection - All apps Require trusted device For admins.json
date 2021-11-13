@@ -1,15 +1,11 @@
 {
-    "displayName": "103 - <RING> - Admin protection - All apps: Block access For internal M365 admins When any sign-in risk is detected",
+    "displayName": "101 - <RING> - Admin protection - All apps: Require trusted device For admins",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "signInRiskLevels": [
-            "high",
-            "medium",
-            "low"
-        ],
+        "signInRiskLevels": [],
         "clientAppTypes": [
             "browser",
             "mobileAppsAndDesktopClients"
@@ -26,16 +22,15 @@
         },
         "users": {
             "includeUsers": [],
-            "excludeUsers": [
-                "GuestsOrExternalUsers"
-            ],
+            "excludeUsers": [],
             "includeGroups": [
                 "<AdministratorGroup>"
             ],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",
-                "<EmergencyAccessAccountsGroup>"
+                "<EmergencyAccessAccountsGroup>",
+                "<SynchronizationServiceAccountsGroup>"
             ],
             "includeRoles": [ 
                 "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3",
@@ -123,7 +118,8 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "compliantDevice",
+            "domainJoinedDevice"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

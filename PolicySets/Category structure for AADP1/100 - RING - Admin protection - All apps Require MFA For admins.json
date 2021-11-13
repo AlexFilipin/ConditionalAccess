@@ -1,5 +1,5 @@
 {
-    "displayName": "102 - <RING> - Admin protection - All apps: Block access For M365 admins When on untrusted location",
+    "displayName": "100 - <RING> - Admin protection - All apps: Require MFA For admins",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -11,6 +11,7 @@
             "mobileAppsAndDesktopClients"
         ],
         "platforms": null,
+        "locations": null,
         "deviceStates": null,
         "applications": {
             "includeApplications": [
@@ -28,7 +29,8 @@
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",
-                "<EmergencyAccessAccountsGroup>"
+                "<EmergencyAccessAccountsGroup>",
+                "<SynchronizationServiceAccountsGroup>"
             ],
             "includeRoles": [ 
                 "9b895d92-2cd3-44c7-9d02-a6ac2d5ea5c3",
@@ -111,20 +113,12 @@
                 "32696413-001a-46ae-978c-ce0f6b3620d2" 
             ],
             "excludeRoles": []
-        },
-        "locations": {
-            "includeLocations": [
-                "All"
-            ],
-            "excludeLocations": [
-                "AllTrusted"
-            ]
         }
     },
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "mfa"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

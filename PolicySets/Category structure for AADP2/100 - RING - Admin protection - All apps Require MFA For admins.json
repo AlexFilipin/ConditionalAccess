@@ -1,5 +1,5 @@
 {
-    "displayName": "101 - <RING> - Admin protection - All apps: Require trusted device For M365 admins",
+    "displayName": "100 - <RING> - Admin protection - All apps: Require MFA For admins",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -118,8 +118,7 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "compliantDevice",
-            "domainJoinedDevice"
+            "mfa"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []
