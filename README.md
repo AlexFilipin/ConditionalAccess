@@ -17,9 +17,6 @@ Policy sets are based on the policies in the repository and form complete policy
 * Device trust with AADP1
 * Device trust with AADP1 and AADP2
 * Device trust with AADP2
-* Network trust with AADP1
-* Network trust with AADP1 and AADP2
-* Network trust with AADP2
 * Your custom policy set
 
 ## Automation solution
