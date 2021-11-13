@@ -22,14 +22,14 @@ A collection of conditional access policies in JSON format which are divided int
 You should NOT deploy all policies in the policy repository - deploy ONE policy set - for more information refer to the quick start wiki.
 
 ## [Policy sets](https://github.com/AlexFilipin/ConditionalAccess/tree/master/PolicySets)
-Policy sets are based on the policies in the repository and form complete policy sets depending on company maturity and licensing:
+Policy sets consist of several policies from the repository and form a blueprint of the conditional access policies your organization should have in place:
 * Bare minimum
 * Device trust with AADP1
 * Device trust with AADP1 and AADP2
 * Device trust with AADP2
 
 ## [PowerShell automation script](https://github.com/AlexFilipin/ConditionalAccess/blob/master/Deploy-Policies.ps1)
-A script based automation solution to deploy and update policy sets in environments.
+A script based automation solution to deploy and update policy sets.
 
 **Together, these three components enable an extremely fast deployment of conditional access concepts and their long-term maintenance, e.g. in the form of source control.**
 
