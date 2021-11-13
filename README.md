@@ -24,9 +24,9 @@ You should NOT deploy all policies in the policy repository - deploy ONE policy 
 ## [Policy sets](https://github.com/AlexFilipin/ConditionalAccess/tree/master/PolicySets)
 Policy sets consist of several policies from the repository and form a blueprint of the conditional access policies your organization should have in place:
 * Bare minimum
-* Device trust with AADP1
-* Device trust with AADP1 and AADP2
-* Device trust with AADP2
+* Category structure for AADP1
+* Category structure for AADP1 and AADP2 mixture
+* Category structure for AADP2
 
 ## [PowerShell automation script](https://github.com/AlexFilipin/ConditionalAccess/blob/master/Deploy-Policies.ps1)
 A script based automation solution to deploy and update policy sets.
