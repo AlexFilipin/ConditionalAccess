@@ -1,5 +1,5 @@
 {
-    "displayName": "504 - <RING> - Data protection - O365: Require trusted device When using modern authentication clients on Windows and macOS",
+    "displayName": "506 - <RING> - Data protection - O365: Block access When using mobile apps and desktop clients on unknown device platforms",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -34,17 +34,20 @@
         },
         "platforms": {
             "includePlatforms": [
+                "all"
+            ],
+            "excludePlatforms": [
+                "android",
+                "iOS",
                 "windows",
                 "macOS"
-            ],
-            "excludePlatforms": []
+            ]
         }
     },
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "compliantDevice",
-            "domainJoinedDevice"
+            "block"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []

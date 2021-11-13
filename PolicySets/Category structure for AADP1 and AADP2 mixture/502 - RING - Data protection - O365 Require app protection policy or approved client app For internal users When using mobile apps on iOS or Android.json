@@ -1,5 +1,5 @@
 {
-    "displayName": "507 - <RING> - Data protection - O365: Block access For external users When using modern authentication clients on iOS or Android",
+    "displayName": "502 - <RING> - Data protection - O365: Require app protection policy or approved client app For internal users When using mobile apps on iOS or Android",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -20,9 +20,11 @@
         },
         "users": {
             "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [
                 "GuestsOrExternalUsers"
             ],
-            "excludeUsers": [],
             "includeGroups": [],
             "excludeGroups": [
                 "<ExclusionTempGroup>",
@@ -43,7 +45,8 @@
     "grantControls": {
         "operator": "OR",
         "builtInControls": [
-            "block"
+            "compliantApplication",
+            "approvedApplication"
         ],
         "customAuthenticationFactors": [],
         "termsOfUse": []
