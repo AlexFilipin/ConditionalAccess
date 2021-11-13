@@ -1,5 +1,5 @@
 {
-    "displayName": "300 - <RING> - Attack surface reduction - All apps: Block access When using legacy authentication",
+    "displayName": "304 - <RING> - Attack surface reduction - All apps: Block access When using other clients on untrusted location",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -10,7 +10,6 @@
             "other"
         ],
         "platforms": null,
-        "locations": null,
         "deviceStates": null,
         "applications": {
             "includeApplications": [
@@ -32,6 +31,14 @@
             ],
             "includeRoles": [],
             "excludeRoles": []
+        },
+        "locations": {
+            "includeLocations": [
+                "All"
+            ],
+            "excludeLocations": [
+                "AllTrusted"
+            ]
         }
     },
     "grantControls": {
