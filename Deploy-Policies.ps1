@@ -127,8 +127,8 @@ if($Endpoint -eq "Beta"){
 }else{
     Select-MgProfile -Name "beta"
 }
-try{Disconnect-MgGraph -ErrorAction SilentlyContinue}catch{}
-Connect-MgGraph -Scopes "Application.Read.All","Group.ReadWrite.All","Policy.Read.All","Policy.ReadWrite.ConditionalAccess" -ErrorAction Stop
+#try{Disconnect-MgGraph -ErrorAction SilentlyContinue}catch{}
+#Connect-MgGraph -Scopes "Application.Read.All","Group.ReadWrite.All","Policy.Read.All","Policy.ReadWrite.ConditionalAccess" -ErrorAction Stop
 #endregion
 
 #region parameters
