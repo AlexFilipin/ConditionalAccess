@@ -1,6 +1,6 @@
 <#    
 .SYNOPSIS
-    Script for automatic creation and update of Conditoinal Access Policies based on JSON representations
+    Script for automatic creation and update of Conditional Access Policies based on JSON representations
 
 .DESCRIPTION
     Connects to Microsoft Graph
