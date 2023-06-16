@@ -34,6 +34,9 @@
 .PARAMETER PoliciesFolder
     Path of the folder where the templates are located e.g. C:\Repos\ConditionalAccess\Policies
 
+.PARAMETER ExistingPoliciesFolder
+    Path of the folder where dumps of existing policies are stored e.g. C:\Repos\ConditionalAccess\Policies\ImplementedPolicies
+
 .PARAMETER ExclusionGroupsPrefix
     Prefix of the exclusion groups that are created for each policy, if no value is specified, the prefix value is used
     If no value is provided: 
@@ -96,6 +99,9 @@ Param(
     [System.String]$PoliciesFolder
     ,
     [Parameter(Mandatory=$False)]
+    [System.String]$ExistingPoliciesFolder
+    ,
+    [Parameter(Mandatory=$False)]
     [System.String]$ExclusionGroupsPrefix
     ,   
     [Parameter(Mandatory=$False)]
@@ -139,6 +145,7 @@ if(-not $EmergencyAccessAccountsGroup){$EmergencyAccessAccountsGroup = $Prefix +
 if(-not $RingTargeted){$RingTargeted = $False}
 if(-not $RingGroup){$RingGroup = $Prefix + "_" + $Ring}
 if(-not $AdministratorGroup){$AdministratorGroup = $Prefix + "_Administrator"}
+if(-not $ExistingPoliciesFolder){$ExistingPoliciesFolder = '.\PolicySets\Implemented policies\'}
 #endregion
 
 #region functions
@@ -189,6 +196,17 @@ $Templates = Get-ChildItem -Path $PoliciesFolder
 $Policies = foreach($Item in $Templates){
     $Policy = Get-Content -Raw -Path $Item.FullName | ConvertFrom-Json
     $Policy
+}
+#endregion
+
+#region import existing policies from the repo
+Write-Host "Importing existing policies"
+$ExisitingPoliciesFiles = Get-ChildItem -Path $ExistingPoliciesFolder
+if ($ExisitingPoliciesFiles) {
+    $ExistingPolicies = foreach($Item in $ExisitingPoliciesFiles){
+        $ExistingPolicy = Get-Content -Raw -Path $Item.FullName | ConvertFrom-Json
+        $ExistingPolicy
+    }
 }
 #endregion
 
@@ -272,6 +290,13 @@ foreach($Policy in $Policies){
         }
 
         $Policy.conditions.users.excludeGroups = $excludeGroups
+    }
+
+    #Add policy ID to the template if policy file is stored in the repo
+
+    if ($ExistingPolicy) {
+        $policyID = ($ExistingPolicies | Where-Object {$_.DisplayName -eq $Policy.DisplayName}).Id
+        if ($policyID){$Policy | add-member -name "id" -MemberType NoteProperty -Value $policyID}
     }
 
     #Create or update
