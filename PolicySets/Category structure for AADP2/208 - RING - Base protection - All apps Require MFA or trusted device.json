@@ -1,0 +1,49 @@
+{
+    "displayName": "208 - <RING> - Base protection - All apps: Require MFA or trusted device",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "browser",
+            "mobileAppsAndDesktopClients"
+        ],
+        "platforms": null,
+        "deviceStates": null,
+        "locations": null,
+        "applications": {
+            "includeApplications": [
+                "All"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>",
+                "<SynchronizationServiceAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "mfa",
+            "compliantDevice",
+            "domainJoinedDevice"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}

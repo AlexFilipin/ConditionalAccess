@@ -1,0 +1,53 @@
+{
+    "displayName": "701 - <RING> - Workload Protection - All apps: Block Access When risk Level detected",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "all"
+        ],
+        "platforms": null,
+        "locations": [],
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "All"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "None"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [],
+            "includeRoles": [],
+            "excludeRoles": []
+        },
+        "clientApplications": {
+            "includeServicePrincipals": [
+                "ServicePrincipalsInMyTenant"
+            ],
+            "excludeServicePrincipals": [],
+            "servicePrincipalFilter": null
+        },
+        "servicePrincipalRiskLevels": [
+            "high",
+            "medium", 
+            "low"
+        ]
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "block"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}

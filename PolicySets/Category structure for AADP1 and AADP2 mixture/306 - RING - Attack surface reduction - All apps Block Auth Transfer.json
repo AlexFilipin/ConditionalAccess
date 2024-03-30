@@ -1,0 +1,49 @@
+{
+    "displayName": "306 - <RING> - Attack surface reduction - All apps: Block Authentication Transfer",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "browser",
+            "mobileAppsAndDesktopClients"
+        ],
+        "platforms": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "All"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        },
+        "locations": [],
+        "authenticationFlows": {
+            "transferMethods": "authenticationTransfer"
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "block"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}

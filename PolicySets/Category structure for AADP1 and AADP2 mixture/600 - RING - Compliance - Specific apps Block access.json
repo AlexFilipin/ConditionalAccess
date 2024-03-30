@@ -1,0 +1,43 @@
+{
+    "displayName": "600 - <RING> - Compliance - Specific apps: Block access",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "browser",
+            "mobileAppsAndDesktopClients"
+        ],
+        "platforms": null,
+        "locations": null,
+        "deviceStates": null,
+        "devices": null,
+        "applications": {
+            "includeApplications": [
+                "None"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "block"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}

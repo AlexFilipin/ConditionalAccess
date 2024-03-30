@@ -1,0 +1,47 @@
+{
+    "displayName": "405 - <RING> - Application protection - Specific apps: MCAS custom policy",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "grantControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "browser",
+            "mobileAppsAndDesktopClients"
+        ],
+        "platforms": null,
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "None"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "sessionControls": {
+        "applicationEnforcedRestrictions": null,
+        "signInFrequency": null,
+        "persistentBrowser": null,
+        "cloudAppSecurity": {
+            "cloudAppSecurityType": "mcasConfigured",
+            "isEnabled": true
+        }
+    }
+}

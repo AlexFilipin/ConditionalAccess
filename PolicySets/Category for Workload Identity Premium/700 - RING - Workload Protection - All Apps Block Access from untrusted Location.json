@@ -1,0 +1,55 @@
+{
+    "displayName": "700 - <RING> - Workload Protection - All apps: Block Access from untrusted Locations",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "all"
+        ],
+        "platforms": null,
+        "locations": {
+            "includeLocations": [
+                "All"
+            ],
+            "excludeLocations": [
+                "AllTrusted"
+            ]
+        },
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "All"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "None"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [],
+            "includeRoles": [],
+            "excludeRoles": []
+        },
+        "clientApplications": {
+            "includeServicePrincipals": [
+                "ServicePrincipalsInMyTenant"
+            ],
+            "excludeServicePrincipals": [],
+            "servicePrincipalFilter": null
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "block"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}
