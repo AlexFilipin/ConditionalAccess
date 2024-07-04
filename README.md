@@ -1,6 +1,6 @@
 # DISCLAIMER
 
-This repository is using the BETA Endpoints and Cmdlets of the Microsoft Graph API. This is not recommended for production environments.
+> This repository is using the BETA Endpoints and Cmdlets of the Microsoft Graph API. This means that the functionality and the behavior of the scripts can change at any time. The scripts are provided as-is and are not supported by Microsoft. Use them at your own risk. 
 
 # Big Thanks to Alex Filipin for the initial work on this repository.
 
@@ -10,7 +10,7 @@ In an nutshell this repository does two things:
 * It provides sets of conditional policies as JSON files that can be deployed to your tenant with a PowerShell script. The same script can also be used to update your conditional access policies and manage them as code.
 * The wiki has plenty of information around designing conditional access policies and fitting them to your organization. While automation is a honorable goal you should first take care WHAT your policies should do, get the most esential policies enabled and develop your organiations strategy to further improve your maturity. Most likely an initial deployment of a policy set is more than enough before you dive into complex management as code.
 
-# Get started with the [Quick-start wiki](https://github.com/Timsto/ConditionalAccess/wiki#quick-start)
+# Get started with the [Quick-start wiki](https://github.com/AlexFilipin/ConditionalAccess/wiki#quick-start)
 
 Although I work for Microsoft, this is not an official recommendation, I exclude any liability and warranty. This is only a personal recommendation which has to be implemented with the utmost care and testing.
 
@@ -24,6 +24,8 @@ A collection of conditional access policies in JSON format which are divided int
 * Base protection
 * Compliance
 * Data protection
+* Global Secure Access
+* Workload Identity
 
 You should NOT deploy all policies in the policy repository - deploy ONE policy set - for more information refer to the quick start wiki.
 
@@ -33,6 +35,8 @@ Policy sets consist of several policies from the repository and form a blueprint
 * Category structure for AADP1
 * Category structure for AADP1 and AADP2 mixture
 * Category structure for AADP2
+* Category for Global Secure Access
+* Category for Workload Identity
 
 ## [PowerShell automation script](https://github.com/Timsto/ConditionalAccess/blob/master/Deploy-Policies.ps1)
 A script based automation solution to deploy and update policy sets.
