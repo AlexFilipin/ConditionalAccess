@@ -1,5 +1,5 @@
 {
-    "displayName": "110 - <RING> - Admin protection - All apps: Require MFA For BreakGlassAccount",
+    "displayName": "602 - <RING> - Compliance - All Apps: Require Strong Auth When Moderate Insider Risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -13,6 +13,7 @@
         "platforms": null,
         "locations": null,
         "deviceStates": null,
+        "devices": null,
         "applications": {
             "includeApplications": [
                 "All"
@@ -21,15 +22,19 @@
             "includeUserActions": []
         },
         "users": {
-            "includeUsers": [],
-            "excludeUsers": [],
-            "includeGroups": [
-                "<EmergencyAccessAccountsGroup>"
+            "includeUsers": [
+                "All"
             ],
-            "excludeGroups": [],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>"
+            ],
             "includeRoles": [],
             "excludeRoles": []
-        }
+        },
+        "insiderRiskLevels": "moderate"
     },
     "grantControls": {
         "operator": "OR",

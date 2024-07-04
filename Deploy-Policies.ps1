@@ -140,7 +140,7 @@ function New-AFAzureADGroup($Name){
     $Group = Get-MgBetaGroup -Filter "DisplayName eq '$Name'"
     if(-not $Group){
         Write-Host "Creating group: $Name"
-        $Group = New-MgBetaGroup -DisplayName $Name -SecurityEnabled:$true -MailEnabled:$false -MailNickname "NotSet"
+        $Group = New-MgBetaGroup -DisplayName $Name -SecurityEnabled:$true -MailEnabled:$false -MailNickname "NotSet" -Visibility Private -IsAssignableToRole:$true
     }
     Write-Host "ObjectId for $Name $($Group.Id)" 
     return $Group.Id
@@ -267,6 +267,23 @@ foreach($Policy in $Policies){
 
         $Policy.conditions.users.excludeGroups = $excludeGroups
     }
+
+    # Authentication Strengh
+    
+    [System.Collections.ArrayList]$AuthStrengh = $Policy.GrantControls.authenticationStrength
+
+    $AuthMethod = Get-MgBetaPolicyAuthenticationStrengthPolicy -AuthenticationStrengthPolicyId 00000000-0000-0000-0000-000000000004
+
+    if ($AuthStrengh -ne $null) {
+        if ($AuthStrengh.Contains("Phising-resistent Auth")) {
+            $AuthStrengh.Add("$($AuthMethod.Id)") > $null
+            $AuthStrengh.Remove("Phising-resistent Auth") > $null
+
+
+            $Policy.GrantControls.authenticationStrength = $AuthStrengh
+        }
+    }
+
 
     #TermsofUse
 

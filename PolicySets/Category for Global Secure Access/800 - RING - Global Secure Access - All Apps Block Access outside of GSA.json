@@ -14,7 +14,9 @@
             "includeLocations": [
                 "All"
             ],
-            "excludeLocations": []
+            "excludeLocations": [
+                "3d46dbda-8382-466a-856d-eb00cbc6b910"
+            ]
         },
         "deviceStates": null,
         "applications": {

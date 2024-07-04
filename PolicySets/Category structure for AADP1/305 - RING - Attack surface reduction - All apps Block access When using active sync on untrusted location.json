@@ -1,5 +1,5 @@
 {
-    "displayName": "110 - <RING> - Admin protection - All apps: Require MFA For BreakGlassAccount",
+    "displayName": "305 - <RING> - Attack surface reduction - All apps: Block access When using active sync on untrusted location",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -7,11 +7,9 @@
     "conditions": {
         "signInRiskLevels": [],
         "clientAppTypes": [
-            "browser",
-            "mobileAppsAndDesktopClients"
+            "exchangeActiveSync"
         ],
         "platforms": null,
-        "locations": null,
         "deviceStates": null,
         "applications": {
             "includeApplications": [
@@ -21,23 +19,34 @@
             "includeUserActions": []
         },
         "users": {
-            "includeUsers": [],
+            "includeUsers": [
+                "All"
+            ],
             "excludeUsers": [],
-            "includeGroups": [
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
                 "<EmergencyAccessAccountsGroup>"
             ],
-            "excludeGroups": [],
             "includeRoles": [],
             "excludeRoles": []
+        },
+        "locations": {
+            "includeLocations": [
+                "All"
+            ],
+            "excludeLocations": [
+                "AllTrusted"
+            ]
         }
     },
     "grantControls": {
         "operator": "OR",
-        "builtInControls": [],
+        "builtInControls": [
+            "block"
+        ],
         "customAuthenticationFactors": [],
-        "termsOfUse": [],
-        "authenticationStrength": {
-            "id": "00000000-0000-0000-0000-000000000004"
-        }
+        "termsOfUse": []
     }
 }

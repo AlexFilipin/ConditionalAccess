@@ -1,5 +1,5 @@
 {
-    "displayName": "110 - <RING> - Admin protection - All apps: Require MFA For BreakGlassAccount",
+    "displayName": "200 - <RING> - Base protection - All apps: Require Strong Auth or trusted device or trusted location",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
@@ -11,7 +11,6 @@
             "mobileAppsAndDesktopClients"
         ],
         "platforms": null,
-        "locations": null,
         "deviceStates": null,
         "applications": {
             "includeApplications": [
@@ -21,14 +20,27 @@
             "includeUserActions": []
         },
         "users": {
-            "includeUsers": [],
-            "excludeUsers": [],
-            "includeGroups": [
-                "<EmergencyAccessAccountsGroup>"
+            "includeUsers": [
+                "All"
             ],
-            "excludeGroups": [],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>",
+                "<SynchronizationServiceAccountsGroup>"
+            ],
             "includeRoles": [],
             "excludeRoles": []
+        },
+        "locations": {
+            "includeLocations": [
+                "All"
+            ],
+            "excludeLocations": [
+                "AllTrusted"
+            ]
         }
     },
     "grantControls": {

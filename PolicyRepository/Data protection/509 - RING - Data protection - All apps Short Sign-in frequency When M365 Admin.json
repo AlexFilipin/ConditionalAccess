@@ -1,9 +1,8 @@
 {
-    "displayName": "100 - <RING> - Admin protection - All apps: Require Strong Auth For admins",
+    "displayName": "509 - <RING> - Data protection - All apps: Short Sign-in frequency When M365 Admin",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
-    "sessionControls": null,
     "conditions": {
         "signInRiskLevels": [],
         "clientAppTypes": [
@@ -29,8 +28,7 @@
             "excludeGroups": [
                 "<ExclusionTempGroup>",
                 "<ExclusionPermGroup>",
-                "<EmergencyAccessAccountsGroup>",
-                "<SynchronizationServiceAccountsGroup>"
+                "<EmergencyAccessAccountsGroup>"
             ],
             "includeRoles": [
                 "62e90394-69f5-4237-9190-012177145e10",
@@ -145,13 +143,15 @@
             "excludeRoles": []
         }
     },
-    "grantControls": {
-        "operator": "OR",
-        "builtInControls": [],
-        "customAuthenticationFactors": [],
-        "termsOfUse": [],
-        "authenticationStrength": {
-            "id": "00000000-0000-0000-0000-000000000004"
+    "GrantControls": {},
+    "sessionControls": {
+        "applicationEnforcedRestrictions": null,
+        "cloudAppSecurity": null,
+        "persistentBrowser": null,
+        "signInFrequency": {
+            "value": 1,
+            "type": "hours",
+            "isEnabled": true
         }
     }
 }

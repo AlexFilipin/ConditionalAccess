@@ -1,11 +1,15 @@
 {
-    "displayName": "110 - <RING> - Admin protection - All apps: Require MFA For BreakGlassAccount",
+    "displayName": "406 - <RING> - Application protection - Specific apps: Require MFA When low or above sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "signInRiskLevels": [],
+        "signInRiskLevels": [
+            "low",
+            "medium",
+            "high"
+        ],
         "clientAppTypes": [
             "browser",
             "mobileAppsAndDesktopClients"
@@ -13,31 +17,35 @@
         "platforms": null,
         "locations": null,
         "deviceStates": null,
+        "devices": null,
         "applications": {
             "includeApplications": [
-                "All"
+                "None"
             ],
             "excludeApplications": [],
             "includeUserActions": []
         },
         "users": {
-            "includeUsers": [],
+            "includeUsers": [
+                "All"
+            ],
             "excludeUsers": [],
-            "includeGroups": [
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
                 "<EmergencyAccessAccountsGroup>"
             ],
-            "excludeGroups": [],
             "includeRoles": [],
             "excludeRoles": []
         }
     },
     "grantControls": {
         "operator": "OR",
-        "builtInControls": [],
+        "builtInControls": [
+            "mfa"
+        ],
         "customAuthenticationFactors": [],
-        "termsOfUse": [],
-        "authenticationStrength": {
-            "id": "00000000-0000-0000-0000-000000000004"
-        }
+        "termsOfUse": []
     }
 }

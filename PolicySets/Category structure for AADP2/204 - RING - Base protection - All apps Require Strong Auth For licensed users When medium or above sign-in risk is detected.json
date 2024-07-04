@@ -1,11 +1,14 @@
 {
-    "displayName": "110 - <RING> - Admin protection - All apps: Require MFA For BreakGlassAccount",
+    "displayName": "204 - <RING> - Base protection - All apps: Require Strong Auth For licensed users When medium or above sign-in risk is detected",
     "createdDateTime": null,
     "modifiedDateTime": null,
     "state": "enabledForReportingButNotEnforced",
     "sessionControls": null,
     "conditions": {
-        "signInRiskLevels": [],
+        "signInRiskLevels": [
+            "medium",
+            "high"
+        ],
         "clientAppTypes": [
             "browser",
             "mobileAppsAndDesktopClients"
@@ -13,6 +16,7 @@
         "platforms": null,
         "locations": null,
         "deviceStates": null,
+        "devices": null,
         "applications": {
             "includeApplications": [
                 "All"
@@ -24,9 +28,13 @@
             "includeUsers": [],
             "excludeUsers": [],
             "includeGroups": [
+                "<AADP2Group>"
+            ],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
                 "<EmergencyAccessAccountsGroup>"
             ],
-            "excludeGroups": [],
             "includeRoles": [],
             "excludeRoles": []
         }
