@@ -1,3 +1,9 @@
+# DISCLAIMER
+
+> This repository is using the BETA Endpoints and Cmdlets of the Microsoft Graph API. This means that the functionality and the behavior of the scripts can change at any time. The scripts are provided as-is and are not supported by Microsoft. Use them at your own risk. 
+
+# Big Thanks to Alex Filipin for the initial work on this repository.
+
 # Conditional Access as Code
 
 In an nutshell this repository does two things:
@@ -10,7 +16,7 @@ Although I work for Microsoft, this is not an official recommendation, I exclude
 
 # Supplementary information
 
-## [Policy repository](https://github.com/AlexFilipin/ConditionalAccess/tree/master/PolicyRepository)
+## [Policy repository](https://github.com/Timsto/ConditionalAccess/tree/master/PolicyRepository)
 A collection of conditional access policies in JSON format which are divided into the following categories and used for policy sets:
 * Admin protection
 * Application protection
@@ -18,17 +24,21 @@ A collection of conditional access policies in JSON format which are divided int
 * Base protection
 * Compliance
 * Data protection
+* Global Secure Access
+* Workload Identity
 
 You should NOT deploy all policies in the policy repository - deploy ONE policy set - for more information refer to the quick start wiki.
 
-## [Policy sets](https://github.com/AlexFilipin/ConditionalAccess/tree/master/PolicySets)
+## [Policy sets](https://github.com/Timsto/ConditionalAccess/tree/master/PolicySets)
 Policy sets consist of several policies from the repository and form a blueprint of the conditional access policies your organization should have in place:
 * Bare minimum
 * Category structure for AADP1
 * Category structure for AADP1 and AADP2 mixture
 * Category structure for AADP2
+* Category for Global Secure Access
+* Category for Workload Identity
 
-## [PowerShell automation script](https://github.com/AlexFilipin/ConditionalAccess/blob/master/Deploy-Policies.ps1)
+## [PowerShell automation script](https://github.com/Timsto/ConditionalAccess/blob/master/Deploy-Policies.ps1)
 A script based automation solution to deploy and update policy sets.
 
 **Together, these three components enable an extremely fast deployment of conditional access concepts and their long-term maintenance, e.g. in the form of source control.**

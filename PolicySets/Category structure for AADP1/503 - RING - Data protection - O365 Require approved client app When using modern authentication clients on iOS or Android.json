@@ -1,0 +1,51 @@
+{
+    "displayName": "503 - <RING> - Data protection - O365: Require approved client app When using modern authentication clients on iOS or Android",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "mobileAppsAndDesktopClients"
+        ],
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "Office365"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        },
+        "platforms": {
+            "includePlatforms": [
+                "android",
+                "iOS"
+            ],
+            "excludePlatforms": []
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [
+            "approvedApplication"
+        ],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    }
+}

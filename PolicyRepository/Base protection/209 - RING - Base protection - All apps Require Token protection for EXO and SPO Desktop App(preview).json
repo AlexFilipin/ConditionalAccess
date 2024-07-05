@@ -1,0 +1,47 @@
+{
+    "displayName": "209 - <RING> - Base protection - All apps: Require Token Protection for EXO and SPO Desktop Apps (preview)",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "mobileAppsAndDesktopClients"
+        ],
+        "platforms": {
+            "includePlatforms": [
+                "windows"
+            ],
+            "excludePlatforms": []
+        },
+        "deviceStates": null,
+        "locations": null,
+        "applications": {
+            "includeApplications": [
+                "00000002-0000-0ff1-ce00-000000000000",
+                "00000003-0000-0ff1-ce00-000000000000"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "sessionControls": {
+        "secureSignInSession": {
+            "isEnabled": true
+        }
+    }
+}

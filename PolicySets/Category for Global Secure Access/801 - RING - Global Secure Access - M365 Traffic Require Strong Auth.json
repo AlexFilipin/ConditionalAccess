@@ -1,0 +1,48 @@
+{
+    "displayName": "801 - <RING> - Global Secure Access - M365 Traffic: Require Strong Auth",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "sessionControls": null,
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "all"
+        ],
+        "platforms": null,
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "networkAccess": {
+                "includeTrafficProfiles": "m365"
+            },
+            "globalSecureAccess": {
+                "includeTrafficProfiles": "m365"
+            }
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [
+                "<AdministratorGroup>"
+            ],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [],
+        "customAuthenticationFactors": [],
+        "termsOfUse": [],
+        "authenticationStrength": {
+			"id" : "00000000-0000-0000-0000-000000000004"
+        }
+    }
+}

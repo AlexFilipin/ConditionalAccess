@@ -1,0 +1,52 @@
+{
+    "displayName": "802 - <RING> - Global Secure Access - Specific Websites: Block",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "all"
+        ],
+        "platforms": null,
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "networkAccess": {
+                "includeTrafficProfiles": "internet"
+            },
+            "globalSecureAccess": {
+                "includeTrafficProfiles": "internet"
+            }
+        },
+        "users": {
+            "includeUsers": [
+                "All"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        }
+    },
+    "grantControls": {
+        "operator": "OR",
+        "builtInControls": [],
+        "customAuthenticationFactors": [],
+        "termsOfUse": []
+    },
+    "sessionControls": {
+        "networkAccessSecurity": {
+            "policyId": "00000000-0000-0000-0000-000000000000",
+            "isEnabled": true
+        },
+        "globalSecureAccessFilteringProfile": {
+            "profileId": "00000000-0000-0000-0000-000000000000",
+            "isEnabled": true
+        }
+    }
+}

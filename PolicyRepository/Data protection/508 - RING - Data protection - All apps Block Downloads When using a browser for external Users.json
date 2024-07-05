@@ -1,0 +1,46 @@
+{
+    "displayName": "508 - <RING> - Data protection - All Apps: Block Downloads When using a browser for external Users",
+    "createdDateTime": null,
+    "modifiedDateTime": null,
+    "state": "enabledForReportingButNotEnforced",
+    "conditions": {
+        "signInRiskLevels": [],
+        "clientAppTypes": [
+            "browser"
+        ],
+        "locations": null,
+        "deviceStates": null,
+        "applications": {
+            "includeApplications": [
+                "All"
+            ],
+            "excludeApplications": [],
+            "includeUserActions": []
+        },
+        "users": {
+            "includeUsers": [
+                "GuestsOrExternalUsers"
+            ],
+            "excludeUsers": [],
+            "includeGroups": [],
+            "excludeGroups": [
+                "<ExclusionTempGroup>",
+                "<ExclusionPermGroup>",
+                "<EmergencyAccessAccountsGroup>"
+            ],
+            "includeRoles": [],
+            "excludeRoles": []
+        },
+        "platforms": null
+    },
+    "grantControls": null,
+    "sessionControls": {
+        "applicationEnforcedRestrictions": null,
+        "cloudAppSecurity": {
+            "cloudAppSecurityType": "blockDownloads",
+            "isEnabled": true
+        },
+        "persistentBrowser": null,
+        "signInFrequency": null
+    }
+}

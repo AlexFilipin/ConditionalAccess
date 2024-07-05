@@ -113,22 +113,16 @@ Param(
     [Parameter(Mandatory=$False)]
     [System.String]$Endpoint
 )
-#Requires -Modules Microsoft.Graph.Authentication, Microsoft.Graph.Identity.SignIns, Microsoft.Graph.Groups
+#Requires -Modules Microsoft.Graph.Authentication, Microsoft.Graph.Beta.Identity.SignIns, Microsoft.Graph.Beta.Groups, Microsoft.Graph.Beta.Identity.Governance
 
 #region connect
 Import-Module -Name Microsoft.Graph.Authentication
-Import-Module -Name Microsoft.Graph.Groups
-Import-Module -Name Microsoft.Graph.Identity.SignIns
+Import-Module -Name Microsoft.Graph.Beta.Groups
+Import-Module -Name Microsoft.Graph.Beta.Identity.SignIns
+Import-Module -Name Microsoft.Graph.Beta.Identity.Governance
 
-if($Endpoint -eq "Beta"){
-    Select-MgProfile -Name "beta"
-}elseif($Endpoint -eq "V1"){
-    Select-MgProfile -Name "v1.0"
-}else{
-    Select-MgProfile -Name "beta"
-}
 try{Disconnect-MgGraph -ErrorAction SilentlyContinue}catch{}
-Connect-MgGraph -Scopes "Application.Read.All","Group.ReadWrite.All","Policy.Read.All","Policy.ReadWrite.ConditionalAccess" -ErrorAction Stop
+Connect-MgGraph -Scopes "Application.Read.All", "Group.ReadWrite.All", "Policy.Read.All", "Policy.ReadWrite.ConditionalAccess", "Agreement.Read.All" -ErrorAction Stop
 #endregion
 
 #region parameters
@@ -143,10 +137,10 @@ if(-not $AdministratorGroup){$AdministratorGroup = $Prefix + "_Administrator"}
 
 #region functions
 function New-AFAzureADGroup($Name){
-    $Group = Get-MgGroup -Filter "DisplayName eq '$Name'"
+    $Group = Get-MgBetaGroup -Filter "DisplayName eq '$Name'"
     if(-not $Group){
         Write-Host "Creating group: $Name"
-        $Group = New-MgGroup -DisplayName $Name -SecurityEnabled:$true -MailEnabled:$false -MailNickname "NotSet"
+        $Group = New-MgBetaGroup -DisplayName $Name -SecurityEnabled:$true -MailEnabled:$false -MailNickname "NotSet" -Visibility Private -IsAssignableToRole:$true
     }
     Write-Host "ObjectId for $Name $($Group.Id)" 
     return $Group.Id
@@ -170,11 +164,11 @@ if($RingTargeted){
 
 #create dynamic group if not yet existing
 Write-Host "Creating or receiving group: $AADP2Group" 
-$Group_AADP2 = Get-MgGroup -Filter "DisplayName eq '$AADP2Group'"
+$Group_AADP2 = Get-MgBetaGroup -Filter "DisplayName eq '$AADP2Group'"
 if(-not $Group_AADP2){
     Write-Host "Creating group: $AADP2Group"
     $MembershipRule = 'user.assignedPlans -any (assignedPlan.servicePlanId -eq "eec0eb4f-6444-4f95-aba0-50c24d67f998" -and assignedPlan.capabilityStatus -eq "Enabled")'
-    $Group_AADP2 = New-MgGroup -DisplayName $AADP2Group -MailEnabled:$False -MailNickname "NotSet" -SecurityEnabled:$True -GroupTypes "DynamicMembership" -MembershipRule $MembershipRule -MembershipRuleProcessingState "On"
+    $Group_AADP2 = New-MgBetaGroup -DisplayName $AADP2Group -MailEnabled:$False -MailNickname "NotSet" -SecurityEnabled:$True -GroupTypes "DynamicMembership" -MembershipRule $MembershipRule -MembershipRuleProcessingState "On"
     Write-Host "ObjectId for $AADP2Group $($Group_AADP2.Id)" 
     $ObjectID_AADP2 = $Group_AADP2.Id
 }else{
@@ -274,25 +268,56 @@ foreach($Policy in $Policies){
         $Policy.conditions.users.excludeGroups = $excludeGroups
     }
 
+    # Authentication Strengh
+    
+    [System.Collections.ArrayList]$AuthStrengh = $Policy.GrantControls.authenticationStrength
+
+    $AuthMethod = Get-MgBetaPolicyAuthenticationStrengthPolicy -AuthenticationStrengthPolicyId 00000000-0000-0000-0000-000000000004
+
+    if ($AuthStrengh -ne $null) {
+        if ($AuthStrengh.Contains("Phising-resistent Auth")) {
+            $AuthStrengh.Add("$($AuthMethod.Id)") > $null
+            $AuthStrengh.Remove("Phising-resistent Auth") > $null
+
+
+            $Policy.GrantControls.authenticationStrength = $AuthStrengh
+        }
+    }
+
+
+    #TermsofUse
+
+    [System.Collections.ArrayList]$TermsofUse = $Policy.GrantControls.termsOfUse
+
+    $ToU = Get-MgBetaIdentityGovernanceTermsOfUseAgreement -Top 1
+    if ($TermsofUse -ne $null) {
+        if ($TermsofUse.Contains("ToU")) {
+            $TermsofUse.Add("$($ToU.Id)") > $null
+            $TermsofUse.Remove("ToU") > $null
+
+            $Policy.GrantControls.TermsofUse = $TermsofUse
+        }
+    }
+
     #Create or update
 
-    $requestBody = $Policy | ConvertTo-Json -Depth 3
+    $requestBody = $Policy | ConvertTo-Json -Depth 4
 
     if($Policy.id){
         Write-Host "Template includes policy id - trying to update existing policy $($Policy.id)" -ForegroundColor Magenta
-        $Result = Get-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.id -ErrorAction SilentlyContinue
+        $Result = Get-MgBetaIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.id -ErrorAction SilentlyContinue
 
         Start-Sleep -Seconds 2
 
         if($Result){
             Write-Host "Updating existing policy $($Policy.id)" -ForegroundColor Green
-            Update-MgIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.id -BodyParameter $requestBody
+            Update-MgBetaIdentityConditionalAccessPolicy -ConditionalAccessPolicyId $Policy.id -BodyParameter $requestBody
         }else{
             Write-Host "No existing policy found - abort cannot update" -ForegroundColor Red
         }
     }else{
         Write-Host "Template does not include policy id - creating new policy" -ForegroundColor Green
-        New-MgIdentityConditionalAccessPolicy -BodyParameter $requestBody
+        New-MgBetaIdentityConditionalAccessPolicy -BodyParameter $requestBody
     }
 
     Start-Sleep -Seconds 2
