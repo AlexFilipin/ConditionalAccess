@@ -199,15 +199,23 @@ function Add-AFAdminAssignmenttoRMAU {
     Write-Host "Check if Admin $AdminID is already member of RMAU $RMAUID"
     $RMAUAdminAssign = Get-MgBetaAdministrativeUnitScopedRoleMember -AdministrativeUnitId $RMAUID | select -ExpandProperty RoleMemberInfo | where { $_.Id -eq $AdminID } -ErrorAction SilentlyContinue
 
-    if (-not $RMAUAdminAssign) {
-        $params = @{
-            roleId         = $RoleAssignmentID
-            roleMemberInfo = @{
-                id = $AdminID
+    # Check if Groups is existing but not with isRoleAssignment give an Error that the group need to recreate with isRoleAssignment Group
+    if (Get-MGBetaGroup -Filter "Id eq '$AdminID'" | where { $_.IsAssignableToRole -ne $true } -ErrorAction SilentlyContinue)
+    {
+        Write-Host "Group $AdminID is not a RoleAssignment Group. Please recreate the group with IsAssignableToRole 'True'" -ForegroundColor Red
+        return
+    }
+    else {
+        if (-not $RMAUAdminAssign) {
+            $params = @{
+                roleId         = $RoleAssignmentID
+                roleMemberInfo = @{
+                    id = $AdminID
+                }
             }
+            Write-Host "Adding Admin $AdminID to RMAU $RMAUID"
+            New-MgBetaAdministrativeUnitScopedRoleMember -AdministrativeUnitId $RMAUID -BodyParameter $params | Out-Null
         }
-        Write-Host "Adding Admin $AdminID to RMAU $RMAUID"
-        New-MgBetaAdministrativeUnitScopedRoleMember -AdministrativeUnitId $RMAUID -BodyParameter $params | Out-Null
     }
 }
 #endregion
@@ -411,5 +419,5 @@ foreach ($Policy in $Policies) {
 #endregion
 
 #region disconnect
-try { Disconnect-MgGraph -ErrorAction SilentlyContinue }catch {}
+try { Disconnect-MgGraph -ErrorAction SilentlyContinue | Out-Null }catch {}
 #endregion
