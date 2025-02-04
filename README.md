@@ -1,8 +1,6 @@
 # DISCLAIMER
 
-> This repository is using the BETA Endpoints and Cmdlets of the Microsoft Graph API. This means that the functionality and the behavior of the scripts can change at any time. The scripts are provided as-is and are not supported by Microsoft. Use them at your own risk. 
-
-# Big Thanks to Alex Filipin for the initial work on this repository.
+> This repository is using the BETA Endpoints and Cmdlets of the Microsoft Graph API. This means that the functionality and the behavior of the scripts can change at any time. The scripts are provided as-is and are not supported by Microsoft. Use them at your own risk.
 
 # Conditional Access as Code
 
