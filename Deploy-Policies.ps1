@@ -329,6 +329,12 @@ foreach ($Policy in $Policies) {
             $includeGroups.Remove("<AdministratorGroup>") > $null
         }
 
+        #Replace Conditional_Access_Exclusion_EmergencyAccessAccounts
+        if ($includeGroups.Contains("<EmergencyAccessAccountsGroup>")) {
+            $includeGroups.Add($ObjectID_EmergencyAccessAccounts) > $null
+            $includeGroups.Remove("<EmergencyAccessAccountsGroup>") > $null
+        }
+
         $Policy.conditions.users.includeGroups = $includeGroups
     }
 
